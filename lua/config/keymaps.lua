@@ -10,4 +10,10 @@ vim.keymap.set("v", "J", "y'>p", { desc = "Copy Lines Down" })
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Paste & preserve yanked" })
 vim.keymap.set("v", "<leader>d", '"_dd', { desc = "Delete & preserve yanked" })
 vim.keymap.set("n", "<leader>d", '"_dd', { desc = "Delete & preserve yanked" })
--- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- replace word in file
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- stay centered
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
