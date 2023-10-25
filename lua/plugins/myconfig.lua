@@ -1,4 +1,5 @@
 return {
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000, lazy = false },
   { "Hoffs/omnisharp-extended-lsp.nvim", lazy = true },
   {
     "neovim/nvim-lspconfig",
@@ -43,15 +44,17 @@ return {
     lazy = true,
     opts = {
       style = "moon",
-      transparent = true,
-      styles = {
-        -- Background styles. Can be "dark", "transparent" or "normal"
-        sidebars = "transparent", -- style for sidebars, see below
-        floats = "transparent", -- style for floating windows
-      },
+      -- transparent = true,
+      -- styles = {
+      --   -- Background styles. Can be "dark", "transparent" or "normal"
+      --   sidebars = "transparent", -- style for sidebars, see below
+      --   floats = "transparent", -- style for floating windows
+      -- },
     },
   },
   {
     "habamax/vim-godot",
+    lazy = true,
   },
+  { "ThePrimeagen/vim-be-good" },
 }
