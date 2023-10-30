@@ -4,7 +4,7 @@ return {
     opts = {
       history = true,
       delete_check_events = "TextChanged,TextChangedI",
-      enable_autosnippets = true,
+      enable_autosnippets = false,
     },
   },
 }
