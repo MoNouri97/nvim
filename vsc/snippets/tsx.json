@@ -1,0 +1,110 @@
+{
+  "Typescript React Function Component": {
+    "prefix": "rh",
+    "body": [
+      "import React from 'react'",
+      "",
+      "type Props = {",
+      "\t$2",
+      "}",
+      "",
+      "const ${1:$TM_FILENAME_BASE}: React.FC<Props> = ({$3}) => {",
+      "\t\treturn (<h1>hello from ${1:$TM_FILENAME_BASE}</h1>);",
+      "}",
+      "export default ${1:$TM_FILENAME_BASE};"
+    ],
+    "description": "Typescript React Function Component"
+  },
+  "Typescript React-Native Function Component": {
+    "prefix": "rnh",
+    "body": [
+      "import { Text, View } from 'react-native';",
+      "",
+      "type Props = {$1}",
+      "",
+      "const $TM_FILENAME_BASE = ({$2}:Props) => {",
+      "\t\treturn (",
+      "\t\t\t<View>",
+      "\t\t\t\t<Text>Hello From $TM_FILENAME_BASE</Text>",
+      "\t\t\t</View>",
+      "\t\t);",
+      "}",
+      "export default $TM_FILENAME_BASE"
+    ],
+    "description": "Typescript React-Native Function Component"
+  },
+  "(Styled) React-Native Function Component": {
+    "prefix": "rnss",
+    "body": [
+      "import React from 'react';",
+      "import AppText from '~/components/AppText';",
+      "import styled from '~/config/styled-components';",
+      "",
+      "type ${TM_FILENAME_BASE}Props = {$1}",
+      "",
+      "const $TM_FILENAME_BASE: React.FC<${TM_FILENAME_BASE}Props> = ({$2}) => {",
+      "\t\treturn (",
+      "\t\t\t<Container>",
+      "\t\t\t\t<AppText>Hello From $TM_FILENAME_BASE</AppText>",
+      "\t\t\t</Container>",
+      "\t\t);",
+      "}",
+      "const Container = styled.View`",
+      "\t",
+      "`",
+      "export default $TM_FILENAME_BASE"
+    ],
+    "description": "(Styled) React-Native Function Component"
+  },
+  "React Native min-Screen": {
+    "prefix": "rns",
+    "body": [
+      "import React from 'react';",
+      "import AppScreen from '~/components/AppScreen';",
+      "import AppText from '~/components/AppText';",
+      "",
+      "const $TM_FILENAME_BASE: React.FC = () => {",
+      "\t\t// code here ... $0",
+      "\t\tconsole.log('Hello From $TM_FILENAME_BASE');",
+      "\t\treturn (",
+      "\t\t\t<AppScreen navbar>",
+      "\t\t\t\t<AppText>Hello From $TM_FILENAME_BASE</AppText>",
+      "\t\t\t</AppScreen>",
+      "\t\t);",
+      "}",
+      "export default $TM_FILENAME_BASE"
+    ],
+    "description": "React Native min-Screen"
+  },
+  "Styled: Object": {
+    "prefix": "sto",
+    "body": [
+      "export const {$1:Card} = styled.View(({ theme }) => ({",
+      "\tbackgroundColor: theme.colors.gray[1],$0",
+      "}));"
+    ],
+    "description": "React-Native Styled Component with Object"
+  },
+  "Styled: theme": {
+    "prefix": "theme",
+    "body": ["${({theme})=> theme.colors.primary};"],
+    "description": "React-Native Styled Component theme"
+  },
+  "Typescript Custom Hook": {
+    "prefix": "ch",
+    "body": ["export const use$1 = ($2) => {", "\t\treturn ($3);", "}"],
+    "description": "Typescript Custom Hook"
+  },
+  "useTranslation": {
+    "prefix": "usetr",
+    "body": ["const { t } = useTranslation();"],
+    "description": "t from useTranslation hook"
+  },
+  "importIcon": {
+    "prefix": "importicon",
+    "body": [
+      "import ${0:MaterialCommunityIcons} from 'react-native-vector-icons/${0:MaterialCommunityIcons}';"
+    ],
+    "description": "t from useTranslation hook"
+  }
+}

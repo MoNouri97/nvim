@@ -8,6 +8,13 @@
       {
         "language": "cs",
         "path": "./snippets/csharp.json"
+      },
+      {
+        "language": [
+          "typescriptreact",
+          "tsx"
+        ],
+        "path": "./snippets/tsx.json"
       }
     ]
   }
