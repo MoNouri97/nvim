@@ -18,7 +18,12 @@ vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Paste & preserve yanked" })
 vim.keymap.set("v", "<leader>d", '"_dd', { desc = "Delete & preserve yanked" })
 vim.keymap.set("n", "<leader>d", '"_dd', { desc = "Delete & preserve yanked" })
 -- replace word in file
-vim.keymap.set("n", "<leader>fR", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "find and replace" })
+vim.keymap.set(
+  "n",
+  "<leader>sf",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "find and replace in file" }
+)
 -- stay centered
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
