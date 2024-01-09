@@ -29,3 +29,6 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+-- prime git conflict keymaps
+vim.keymap.set("n", "gj", "<cmd>diffget //2<CR>")
+vim.keymap.set("n", "gf", "<cmd>diffget //3<CR>")
