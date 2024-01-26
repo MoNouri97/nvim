@@ -3,6 +3,6 @@ git:
     colorArg: always
     pager: delta --dark --paging=never
 os:
-  edit: "nvim --server $NVIM --remote-tab {{filename}}"
-  suspend: false,
+  edit: nvim --server $NVIM --remote {{filename}}
+  suspend: false
   editInTerminal: false
