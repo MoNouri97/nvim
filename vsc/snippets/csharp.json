@@ -2,53 +2,37 @@
   "comment": {
     "prefix": "summary",
     "body": [
-      "\/\/\/ <summary>",
-      "\/\/\/ ${1:What it does.}",
-      "\/\/\/ <\/summary>",
-      "\/\/\/ <param name=\"${3:parameterName}\">${4:Parameter description.}<\/param>",
-      "\/\/\/ <returns>${2:Type and description of the returned object.}<\/returns>",
-      "\/\/\/ <example>${5:Write me later.}<\/example>$0"
+      "/// <summary>",
+      "/// ${1:What it does.}",
+      "/// </summary>",
+      "/// <param name=\"${3:parameterName}\">${4:Parameter description.}</param>",
+      "/// <returns>${2:Type and description of the returned object.}</returns>",
+      "/// <example>${5:Write me later.}</example>$0"
     ]
   },
   "signal": {
     "prefix": "signal",
-    "body": [
-      "[Signal] public delegate void ${1:Name}EventHandler($2);"
-    ]
+    "body": ["[Signal] public delegate void ${1:Name}EventHandler($2);"]
   },
   "test": {
     "prefix": "test",
-    "body": [
-      "testing testing ..."
-    ]
+    "body": ["testing testing ..."]
   },
   "export": {
     "prefix": "export",
-    "body": [
-      "[Export] private ${1:float} $0;"
-    ]
+    "body": ["[Export] private ${1:float} $0;"]
   },
   "OnReady": {
     "prefix": "onReady",
-    "body": [
-      "[OnReady] private ${1:Type} $0;"
-    ]
+    "body": ["[OnReady] private ${1:Type} $0;"]
   },
   "_Process": {
     "prefix": "process",
-    "body": [
-      "public override void _Process(double delta) {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["public override void _Process(double delta) {", "\t$0", "}"]
   },
   "_Ready": {
     "prefix": "ready",
-    "body": [
-      "public override void _Ready() {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["public override void _Ready() {", "\t$0", "}"]
   },
   "WireOnReady": {
     "prefix": "wire",
@@ -58,6 +42,13 @@
       "\t\tthis.WireOnReady();",
       "\t}",
       "}"
+    ]
+  },
+  "buttonExport": {
+    "prefix": "buttonExport",
+    "body": [
+      "public string[] _get_tool_buttons()",
+      "{ return new string[] { \"UpdateCorners\" };} "
     ]
   }
 }
