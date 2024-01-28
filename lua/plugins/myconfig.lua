@@ -37,4 +37,8 @@ return {
     lazy = true,
   },
   { "ThePrimeagen/vim-be-good" },
+  {
+    "akinsho/bufferline.nvim",
+    enabled = false,
+  },
 }
