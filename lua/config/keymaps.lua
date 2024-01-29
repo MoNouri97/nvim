@@ -11,15 +11,15 @@ local map = Util.safe_keymap_set
 
 local copyLineDown = function()
   local mode = vim.api.nvim_get_mode().mode
-  local old_reg = vim.fn.getreg("*")
-  local old_regtype = vim.fn.getregtype("*")
+  local old_reg = vim.fn.getreg("+")
+  local old_regtype = vim.fn.getregtype("+")
   if mode == "V" then
     vim.cmd("normal! y'>p")
   else
     vim.cmd("normal! yyp")
   end
   ---@diagnostic disable-next-line: param-type-mismatch
-  vim.fn.setreg("*", old_reg, old_regtype)
+  vim.fn.setreg("+", old_reg, old_regtype)
 end
 
 vim.keymap.set({ "n", "v" }, "J", copyLineDown, { desc = "Copy Line Down" })
