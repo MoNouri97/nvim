@@ -9,9 +9,21 @@ local Util = require("lazyvim.util")
 -- use `vim.keymap.set` instead
 local map = Util.safe_keymap_set
 
+local copyLineDown = function()
+  local mode = vim.api.nvim_get_mode().mode
+  local old_reg = vim.fn.getreg("*")
+  local old_regtype = vim.fn.getregtype("*")
+  if mode == "V" then
+    vim.cmd("normal! y'>p")
+  else
+    vim.cmd("normal! yyp")
+  end
+  ---@diagnostic disable-next-line: param-type-mismatch
+  vim.fn.setreg("*", old_reg, old_regtype)
+end
+
+vim.keymap.set({ "n", "v" }, "J", copyLineDown, { desc = "Copy Line Down" })
 vim.keymap.set("i", "jk", "<esc>", { desc = "Exit Edit mode with jk" })
-vim.keymap.set("n", "J", "yyp", { desc = "Copy Line Down" })
-vim.keymap.set("v", "J", "y'>p", { desc = "Copy Lines Down" })
 -- Move Lines for mac (cuz mac is special :) & dumb )
 vim.keymap.set("n", "Ï", "<cmd>m .+1<cr>==", { desc = "Move down" })
 vim.keymap.set("n", "È", "<cmd>m .-2<cr>==", { desc = "Move up" })
@@ -21,8 +33,7 @@ vim.keymap.set("v", "Ï", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 vim.keymap.set("v", "È", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 -- hint \"_d :copy to void registry
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Paste & preserve yanked" })
-vim.keymap.set("v", "<leader>d", '"_dd', { desc = "Delete & preserve yanked" })
-vim.keymap.set("n", "<leader>d", '"_dd', { desc = "Delete & preserve yanked" })
+vim.keymap.set({ "v", "n" }, "<leader>d", '"_d', { desc = "Delete & preserve yanked" })
 -- replace word in file
 vim.keymap.set(
   "n",
