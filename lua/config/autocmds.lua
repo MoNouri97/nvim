@@ -3,7 +3,7 @@
 -- Add any additional autocmds here
 vim.api.nvim_create_autocmd({ "FocusLost" }, {
   callback = function()
-    print("autosave")
+    print("Saving ...")
     vim.cmd("wa")
   end,
 })
