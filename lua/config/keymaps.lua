@@ -2,7 +2,13 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 --
---
+-- This file is automatically loaded by lazyvim.config.init
+local Util = require("lazyvim.util")
+
+-- DO NOT USE THIS IN YOU OWN CONFIG!!
+-- use `vim.keymap.set` instead
+local map = Util.safe_keymap_set
+
 vim.keymap.set("i", "jk", "<esc>", { desc = "Exit Edit mode with jk" })
 vim.keymap.set("n", "J", "yyp", { desc = "Copy Line Down" })
 vim.keymap.set("v", "J", "y'>p", { desc = "Copy Lines Down" })
@@ -32,3 +38,5 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- prime git conflict keymaps
 vim.keymap.set("n", "gj", "<cmd>diffget //2<CR>")
 vim.keymap.set("n", "gf", "<cmd>diffget //3<CR>")
+
+map("n", "<C-a>", "<CMD>%y<CR>", { desc = "Yank All" })
