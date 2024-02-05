@@ -50,4 +50,4 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "gj", "<cmd>diffget //2<CR>")
 vim.keymap.set("n", "gf", "<cmd>diffget //3<CR>")
 
-map("n", "<C-a>", "<CMD>%y<CR>", { desc = "Yank All" })
+map("n", "<C-y>", "<CMD>%y<CR>", { desc = "Yank All" })
