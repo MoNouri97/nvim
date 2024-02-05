@@ -1,5 +1,5 @@
 return {
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000, lazy = false },
+  { "oxfist/night-owl.nvim", priority = 1000, lazy = false },
   -- { "Hoffs/omnisharp-extended-lsp.nvim", lazy = true },
   {
     "rcarriga/nvim-notify",
