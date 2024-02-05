@@ -55,7 +55,8 @@ return {
         --   item.menu = kind
         else
           item.menu = ({
-            nvim_lsp = "[LSP]",
+            nvim_lsp = kind,
+            -- nvim_lsp = kind .. " [LSP]",
             luasnip = "[Snippet]",
             buffer = "[Buffer]",
             path = "[Path]",
