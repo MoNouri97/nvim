@@ -7,11 +7,22 @@ return {
       opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
         layout_strategy = "horizontal",
         layout_config = {
-          height = 0.95,
-          width = 0.95,
+          -- height = 0.95,
+          -- width = 0.95,
           horizontal = {
+            prompt_position = "bottom",
             preview_width = 0.6,
           },
+        },
+      })
+      opts.pickers = vim.tbl_deep_extend("force", opts.defaults or {}, {
+        find_files = {
+          theme = "dropdown",
+          preview = false,
+        },
+        git_files = {
+          theme = "dropdown",
+          preview = false,
         },
       })
     end,
@@ -39,10 +50,6 @@ return {
             -- Telescope layout setup
             telescope_theme = {
               show_custom_functions = "dropdown",
-              -- e.g. realistic example
-              -- show_custom_functions = {
-              --   layout_config = { width = 0.4, height = 0.4 },
-              -- },
             },
           },
         },
