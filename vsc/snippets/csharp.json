@@ -48,7 +48,7 @@
     "prefix": "buttonExport",
     "body": [
       "public string[] _get_tool_buttons()",
-      "{ return new string[] { \"UpdateCorners\" };} "
+      "{ return new string[] { \"$0\" };} "
     ]
   }
 }
