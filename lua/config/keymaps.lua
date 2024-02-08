@@ -22,7 +22,7 @@ local copyLineDown = function()
   vim.fn.setreg("+", old_reg, old_regtype)
 end
 
-vim.keymap.set({ "n", "v" }, "J", copyLineDown, { desc = "Copy Line Down" })
+vim.keymap.set({ "n", "v" }, "<C-j>", copyLineDown, { desc = "Copy Line Down" })
 vim.keymap.set("i", "jk", "<esc>", { desc = "Exit Edit mode with jk" })
 -- Move Lines for mac (cuz mac is special :) & dumb )
 vim.keymap.set("n", "Ï", "<cmd>m .+1<cr>==", { desc = "Move down" })

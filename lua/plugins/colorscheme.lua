@@ -69,7 +69,19 @@ return {
       -- },
     },
   },
-  { "oxfist/night-owl.nvim", priority = 1000, lazy = false },
+  {
+    "oxfist/night-owl.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      -- These are the default settings
+      bold = true,
+      italics = false,
+      underline = true,
+      undercurl = true,
+      transparent_background = true,
+    },
+  },
   {
     "LazyVim/LazyVim",
     opts = {
