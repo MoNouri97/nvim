@@ -7,12 +7,36 @@ return {
       { "<leader>a", mark.add_file, mode = "n", desc = "add to harpoon" },
       { "<C-e>", ui.toggle_quick_menu, mode = "n" },
       {
-        "<C-j>",
+        "<leader>&",
         function()
           ui.nav_file(1)
         end,
         mode = "n",
-        desc = "harpoon goto 1",
+        desc = "Harpoon goto 1",
+      },
+      {
+        "<leader>é",
+        function()
+          ui.nav_file(2)
+        end,
+        mode = "n",
+        desc = "Harpoon goto 2",
+      },
+      {
+        '<leader>"',
+        function()
+          ui.nav_file(3)
+        end,
+        mode = "n",
+        desc = "Harpoon goto 3",
+      },
+      {
+        "<leader>'",
+        function()
+          ui.nav_file(4)
+        end,
+        mode = "n",
+        desc = "Harpoon goto 4",
       },
       {
         "<C-k>",
@@ -20,7 +44,7 @@ return {
           ui.nav_next()
         end,
         mode = "n",
-        desc = "harpoon next",
+        desc = "Harpoon next",
       },
     }
   end,
