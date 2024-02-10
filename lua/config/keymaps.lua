@@ -51,3 +51,7 @@ vim.keymap.set("n", "gj", "<cmd>diffget //2<CR>")
 vim.keymap.set("n", "gf", "<cmd>diffget //3<CR>")
 
 map("n", "<C-y>", "<CMD>%y<CR>", { desc = "Yank All" })
+-- lazygit
+map("n", "<leader>gg", function()
+  Util.terminal({ "lazygit" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false, border = "single" })
+end, { desc = "Lazygit (root dir)" })

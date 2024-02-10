@@ -24,10 +24,10 @@ return {
     local cmp = require("cmp")
     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
     local border_opts = {
-      border = "rounded",
+      -- border = "rounded",
       -- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
       col_offset = -4,
-      -- side_padding = 0,
+      -- side_padding = 1,
       winhighlight = "Normal:FloatBorder,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
       -- winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
     }
@@ -58,6 +58,8 @@ return {
       end,
     }
     opts.window = {
+      -- completion = border_opts,
+      -- documentation = border_opts,
       completion = cmp.config.window.bordered(border_opts),
       documentation = cmp.config.window.bordered(border_opts),
     }

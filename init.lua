@@ -2,4 +2,7 @@
 require("config.lazy")
 -- vim.lsp.set_log_level("debug")
 vim.lsp.set_log_level("off")
+
+-- colorscheme related
 vim.cmd.colorscheme("catppuccin")
+vim.cmd([[set pumblend=0]])
