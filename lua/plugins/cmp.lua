@@ -11,14 +11,6 @@ return {
   dependencies = { "hrsh7th/cmp-emoji" },
   ---@param opts cmp.ConfigSchema
   opts = function(_, opts)
-    opts.window = {
-      completion = {
-        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-        col_offset = -3,
-        side_padding = 0,
-      },
-    }
-    ---@diagnostic disable-next-line: missing-fields
     -- opts.formatting = {
     -- format = function(entry, vim_item)
     --   local kind = require("lazyvim.config").icons.kinds[vim_item.kind]

@@ -2,7 +2,7 @@ return {
   {
     "catppuccin/nvim",
     lazy = false,
-    priority = 1001,
+    priority = 1000,
     name = "catppuccin",
     opts = {
       flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -15,8 +15,6 @@ return {
       term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
       dim_inactive = {
         enabled = false, -- dims the background color of inactive window
-        shade = "dark",
-        percentage = 0.15, -- percentage of the shade to apply to the inactive window
       },
       integrations = {
         harpoon = true,
@@ -48,29 +46,29 @@ return {
         treesitter = true,
         which_key = true,
       },
-    },
-  },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    opts = {
-      style = "moon",
-      transparent = true,
-      styles = {
-        -- Background styles. Can be "dark", "transparent" or "normal"
-        sidebars = "transparent", -- style for sidebars, see below
-        floats = "transparent", -- style for floating windows
+      highlight_overrides = {
+        all = function(colors)
+          return {
+            DiagnosticVirtualTextError = { bg = colors.none },
+            DiagnosticVirtualTextWarn = { bg = colors.none },
+            DiagnosticVirtualTextHint = { bg = colors.none },
+            DiagnosticVirtualTextInfo = { bg = colors.none },
+            Pmenu = { bg = colors.none },
+          }
+        end,
       },
-      -- transparent = true,
-      -- styles = {
-      --   -- Background styles. Can be "dark", "transparent" or "normal"
-      --   sidebars = "transparent", -- style for sidebars, see below
-      --   floats = "transparent", -- style for floating windows
-      -- },
+      color_overrides = {
+        mocha = {
+          -- I don't think these colours are pastel enough by default!
+          peach = "#fcc6a7",
+          green = "#d2fac5",
+        },
+      },
     },
   },
   {
     "oxfist/night-owl.nvim",
+    enabled = false,
     priority = 1000,
     lazy = false,
     opts = {
@@ -79,13 +77,6 @@ return {
       italics = false,
       underline = true,
       undercurl = true,
-      transparent_background = true,
-    },
-  },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "night-owl",
     },
   },
 }
