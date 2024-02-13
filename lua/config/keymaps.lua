@@ -37,9 +37,9 @@ vim.keymap.set({ "v", "n" }, "<leader>d", '"_d', { desc = "Delete & preserve yan
 -- replace word in file
 vim.keymap.set(
   "n",
-  "<leader>sf",
+  "<leader>r",
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "find and replace in file" }
+  { desc = "Find and [r]eplace in file" }
 )
 -- stay centered
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -55,3 +55,5 @@ map("n", "<C-y>", "<CMD>%y<CR>", { desc = "Yank All" })
 map("n", "<leader>gg", function()
   Util.terminal({ "lazygit" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false, border = "single" })
 end, { desc = "Lazygit (root dir)" })
+-- terminal escape
+map("t", "<Esc>", "<C-\\><C-n>", { desc = "Escape terminal mode" })
