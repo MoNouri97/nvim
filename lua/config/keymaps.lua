@@ -38,9 +38,9 @@ vim.keymap.set({ "v", "n" }, "<leader>d", '"_d', { desc = "Delete & preserve yan
 -- replace word in file
 vim.keymap.set(
   "n",
-  "<leader>sf",
+  "<leader>r",
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "find and replace in file" }
+  { desc = "Find and [r]eplace in file" }
 )
 -- stay centered
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
