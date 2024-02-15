@@ -1,4 +1,4 @@
-function limitStringLength(str, maxLength)
+local function limitStringLength(str, maxLength)
   if string.len(str) > maxLength then
     return string.sub(str, 1, maxLength)
   else
@@ -9,7 +9,6 @@ end
 return {
   "hrsh7th/nvim-cmp",
   dependencies = { "hrsh7th/cmp-emoji" },
-  ---@param opts cmp.ConfigSchema
   opts = function(_, opts)
     -- opts.formatting = {
     -- format = function(entry, vim_item)

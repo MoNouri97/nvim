@@ -2,7 +2,7 @@ return {
   -- { "Hoffs/omnisharp-extended-lsp.nvim", lazy = true },
   {
     "rcarriga/nvim-notify",
-    enabled = false,
+    enabled = true,
     opts = {
       background_colour = "#000000",
       max_height = function()
