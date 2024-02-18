@@ -3,7 +3,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 --
 -- This file is automatically loaded by lazyvim.config.init
-require("config.monouri97.lazygit")
+require("monouri.lazygit")
 local Util = require("lazyvim.util")
 
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
@@ -38,9 +38,9 @@ vim.keymap.set({ "v", "n" }, "<leader>d", '"_d', { desc = "Delete & preserve yan
 -- replace word in file
 vim.keymap.set(
   "n",
-  "<leader>r",
+  "<leader>fa",
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "Find and [r]eplace in file" }
+  { desc = "[F]ind [A]nd replace in file" }
 )
 -- stay centered
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
