@@ -12,6 +12,9 @@ return {
         return math.floor(vim.o.columns * 0.3)
       end,
     },
+    keys = {
+      { "<leader>uN", "<CMD>Telescope notify<CR>", desc = "Show All Notifications" },
+    },
   },
   { "ThePrimeagen/vim-be-good" },
   {

@@ -33,7 +33,7 @@ vim.keymap.set("i", "Ï", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 vim.keymap.set("i", "È", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 vim.keymap.set("v", "Ï", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 vim.keymap.set("v", "È", ":m '<-2<cr>gv=gv", { desc = "Move up" })
--- hint \"_d :copy to void registry
+-- hint \"_d :copy to void registry (thx prime)
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Paste & preserve yanked" })
 vim.keymap.set({ "v", "n" }, "<leader>d", '"_d', { desc = "Delete & preserve yanked" })
 -- replace word in file
@@ -55,9 +55,6 @@ vim.keymap.set("n", "gf", "<cmd>diffget //3<CR>")
 map("n", "<C-y>", "<CMD>%y<CR>", { desc = "Yank All" })
 -- lazygit
 map("n", "<leader>gg", lazygit.startLazygit, { noremap = true, silent = true, desc = { "Lazygit (root dir)" } })
--- map("n", "<leader>gg", function()
---   Util.terminal({ "lazygit" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false, border = "single" })
--- end, { desc = "Lazygit (root dir)" })
 
 -- godot
 map("n", "<leader>rg", godot.GodtRun, { desc = "[R]un [G]odot" })

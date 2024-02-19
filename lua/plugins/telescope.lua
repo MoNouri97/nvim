@@ -27,5 +27,8 @@ return {
         },
       })
     end,
+    keys = {
+      { "<leader>ff", Util.telescope("find_files", { hidden = true }), desc = "[F]ind [Files]" },
+    },
   },
 }
