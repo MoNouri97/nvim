@@ -57,4 +57,4 @@ map("n", "<C-y>", "<CMD>%y<CR>", { desc = "Yank All" })
 map("n", "<leader>gg", lazygit.startLazygit, { noremap = true, silent = true, desc = { "Lazygit (root dir)" } })
 
 -- godot
-map("n", "<leader>rg", godot.GodtRun, { desc = "[R]un [G]odot" })
+map("n", "<leader>rg", godot.GodtRun, { desc = "[R]un [G]odot Projet" })
