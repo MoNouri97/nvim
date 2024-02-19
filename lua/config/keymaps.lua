@@ -3,7 +3,8 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 --
 -- This file is automatically loaded by lazyvim.config.init
-require("monouri.lazygit")
+local lazygit = require("monouri.lazygit")
+local godot = require("monouri.godot")
 local Util = require("lazyvim.util")
 
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
@@ -53,7 +54,10 @@ vim.keymap.set("n", "gf", "<cmd>diffget //3<CR>")
 
 map("n", "<C-y>", "<CMD>%y<CR>", { desc = "Yank All" })
 -- lazygit
-map("n", "<leader>gg", StartLazygit, { noremap = true, silent = true, desc = { "Lazygit (root dir)" } })
+map("n", "<leader>gg", lazygit.startLazygit, { noremap = true, silent = true, desc = { "Lazygit (root dir)" } })
 -- map("n", "<leader>gg", function()
 --   Util.terminal({ "lazygit" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false, border = "single" })
 -- end, { desc = "Lazygit (root dir)" })
+
+-- godot
+map("n", "<leader>rg", godot.GodtRun, { desc = "[R]un [G]odot" })

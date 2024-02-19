@@ -1,5 +1,7 @@
 local Util = require("lazyvim.util")
 
+local M = {}
+
 function LazygitEdit(original_buffer)
   -- git current terminal channel
   ---@diagnostic disable-next-line: param-type-mismatch
@@ -42,7 +44,7 @@ function LazygitEdit(original_buffer)
 end
 
 -- Start Lazygit
-function StartLazygit()
+function M.startLazygit()
   local current_buffer = vim.api.nvim_get_current_buf()
   local float_term = Util.terminal(
     { "lazygit" },
@@ -58,3 +60,5 @@ function StartLazygit()
     { noremap = true, silent = true }
   )
 end
+
+return M

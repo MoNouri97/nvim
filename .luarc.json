@@ -1,5 +1,3 @@
 {
-    "diagnostics.globals": [
-        "limitStringLength"
-    ]
+  "diagnostics.globals": []
 }

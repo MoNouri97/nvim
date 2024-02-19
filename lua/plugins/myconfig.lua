@@ -13,10 +13,6 @@ return {
       end,
     },
   },
-  {
-    "habamax/vim-godot",
-    lazy = true,
-  },
   { "ThePrimeagen/vim-be-good" },
   {
     "akinsho/bufferline.nvim",
