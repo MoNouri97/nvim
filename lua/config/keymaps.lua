@@ -44,10 +44,14 @@ vim.keymap.set(
   { desc = "[F]ind [A]nd replace in file" }
 )
 -- stay centered
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+map("n", "G", "Gzz")
+map("n", "*", "*zz")
+map("n", "<C-o>","<C-o>zz")
+map("n", "%","%zz")
 -- prime git conflict keymaps
 vim.keymap.set("n", "gj", "<cmd>diffget //2<CR>")
 vim.keymap.set("n", "gf", "<cmd>diffget //3<CR>")
@@ -58,3 +62,8 @@ map("n", "<leader>gg", lazygit.startLazygit, { noremap = true, silent = true, de
 
 -- godot
 map("n", "<leader>rg", godot.GodtRun, { desc = "[R]un [G]odot Projet" })
+
+-- oil
+map("n", "<leader>-", function()
+  require("oil").toggle_float()
+end, { desc = "Oil File Explorer" })

@@ -48,7 +48,7 @@ function M.startLazygit()
   local current_buffer = vim.api.nvim_get_current_buf()
   local float_term = Util.terminal(
     { "lazygit" },
-    { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false, border = "single" }
+    { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false, border = "rounded" }
   )
   local created_buffer = float_term.buf
   -- set the custom keymap for "<c-i>" within it
