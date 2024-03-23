@@ -1,9 +1,10 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.lsp.none-ls"
+    "lazyvim.plugins.extras.lsp.none-ls",
+    "lazyvim.plugins.extras.ui.edgy"
   ],
   "news": {
     "NEWS.md": "2123"
   },
-  "version": 2
+  "version": 3
 }

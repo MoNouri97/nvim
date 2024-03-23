@@ -5,11 +5,8 @@
 -- This file is automatically loaded by lazyvim.config.init
 local lazygit = require("monouri.lazygit")
 local godot = require("monouri.godot")
-local Util = require("lazyvim.util")
 
--- DO NOT USE THIS IN YOU OWN CONFIG!!
--- use `vim.keymap.set` instead
-local map = Util.safe_keymap_set
+local map = vim.keymap.set
 
 local copyLineDown = function()
   local mode = vim.api.nvim_get_mode().mode
