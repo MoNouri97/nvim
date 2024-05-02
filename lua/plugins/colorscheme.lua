@@ -5,12 +5,12 @@ return {
     priority = 1000,
     name = "catppuccin",
     opts = {
-      flavour = "macchiato", -- latte, frappe, macchiato, mocha
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
       background = { -- :h background
         light = "latte",
-        dark = "macchiato",
+        dark = "mocha",
       },
-      transparent_background = true, -- disables setting the background color.
+      transparent_background = false, -- disables setting the background color.
       show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
       term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
       dim_inactive = {
@@ -35,6 +35,9 @@ return {
             warnings = { "undercurl" },
             information = { "undercurl" },
           },
+          inlay_hints = {
+            background = true,
+          },
         },
         navic = { enabled = true, custom_bg = "lualine" },
         neotest = true,
@@ -42,17 +45,21 @@ return {
         notify = true,
         neotree = true,
         semantic_tokens = true,
-        telescope = true,
+        -- telescope = true,
+        telescope = {
+          enabled = true,
+          style = "nvchad",
+        },
         treesitter = true,
         which_key = true,
       },
       highlight_overrides = {
         all = function(colors)
           return {
-            DiagnosticVirtualTextError = { bg = colors.none },
-            DiagnosticVirtualTextWarn = { bg = colors.none },
-            DiagnosticVirtualTextHint = { bg = colors.none },
-            DiagnosticVirtualTextInfo = { bg = colors.none },
+            -- DiagnosticVirtualTextError = { bg = colors.none },
+            -- DiagnosticVirtualTextWarn = { bg = colors.none },
+            -- DiagnosticVirtualTextHint = { bg = colors.none },
+            -- DiagnosticVirtualTextInfo = { bg = colors.none },
             Pmenu = { bg = colors.none },
             -- Normal = { bg = colors.none },
             -- NormalFloat = { bg = colors.none },
@@ -62,6 +69,9 @@ return {
       },
       color_overrides = {
         mocha = {
+          -- base = "#000000",
+          -- mantle = "#000000",
+          -- crust = "#000000",
           -- I don't think these colours are pastel enough by default!
           peach = "#fcc6a7",
           green = "#d2fac5",
@@ -81,5 +91,15 @@ return {
       underline = true,
       undercurl = true,
     },
+  },
+  {
+    "craftzdog/solarized-osaka.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = function()
+      return {
+        transparent = false,
+      }
+    end,
   },
 }
