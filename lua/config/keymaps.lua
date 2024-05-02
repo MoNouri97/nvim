@@ -50,15 +50,15 @@ map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 map("n", "G", "Gzz")
 map("n", "*", "*zz")
-map("n", "<C-o>","<C-o>zz")
-map("n", "%","%zz")
+map("n", "<C-o>", "<C-o>zz")
+map("n", "%", "%zz")
 -- prime git conflict keymaps
 vim.keymap.set("n", "gj", "<cmd>diffget //2<CR>")
 vim.keymap.set("n", "gf", "<cmd>diffget //3<CR>")
 
 map("n", "<C-y>", "<CMD>%y<CR>", { desc = "Yank All" })
 -- lazygit
-map("n", "<leader>gg", lazygit.startLazygit, { noremap = true, silent = true, desc = { "Lazygit (root dir)" } })
+map("n", "<leader>gg", lazygit.startLazygit, { noremap = true, silent = true, desc = "Lazygit (root dir)" })
 
 -- godot
 map("n", "<leader>rg", godot.GodtRun, { desc = "[R]un [G]odot Projet" })

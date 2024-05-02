@@ -16,7 +16,9 @@
       {
         "language": [
           "typescriptreact",
-          "tsx"
+          "tsx",
+          "ts",
+          "typescript"
         ],
         "path": "./snippets/tsx.json"
       }

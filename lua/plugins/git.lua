@@ -3,11 +3,15 @@ return {
     "tpope/vim-fugitive",
   },
   { "lewis6991/gitsigns.nvim", opts = { current_line_blame = true } },
-  { "sindrets/diffview.nvim" },
   {
     "ThePrimeagen/git-worktree.nvim",
-    keys = function()
+    config = function()
       require("telescope").load_extension("git_worktree")
+    end,
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
+    keys = function()
       return {
         {
           "<leader>gw",
@@ -20,9 +24,6 @@ return {
         },
       }
     end,
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-    },
   },
   {
     "aaronhallaert/advanced-git-search.nvim",
