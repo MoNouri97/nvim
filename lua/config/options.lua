@@ -5,7 +5,7 @@
 vim.o.hlsearch = false
 vim.o.foldmethod = "indent"
 -- Always keep 8 lines above/below cursor unless at start/end of file
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 10
 
 -- Place a column line
--- vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "120"
