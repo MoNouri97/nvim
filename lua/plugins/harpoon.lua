@@ -1,9 +1,13 @@
-if false then
+if true then
   return {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     enabled = true,
     dependencies = { "nvim-lua/plenary.nvim" },
+    opts = function()
+      local harpoon = require("harpoon")
+      harpoon:setup()
+    end,
     keys = function()
       local harpoon = require("harpoon")
       local conf = require("telescope.config").values
@@ -37,7 +41,7 @@ if false then
           mode = "n",
           "<leader>a",
           function()
-            harpoon:list():append()
+            harpoon:list():add()
           end,
           desc = "[A]dd to harpoon",
         },
@@ -111,55 +115,56 @@ if false then
     end,
   }
 end
-return {
-  "ThePrimeagen/harpoon",
-  branch = "master",
-  keys = function()
-    local mark = require("harpoon.mark")
-    local ui = require("harpoon.ui")
-    return {
-      { "<leader>a", mark.add_file, mode = "n", desc = "add to harpoon" },
-      { "<C-e>", ui.toggle_quick_menu, mode = "n" },
-      {
-        "<leader>&",
-        function()
-          ui.nav_file(1)
-        end,
-        mode = "n",
-        desc = "Harpoon goto 1",
-      },
-      {
-        "<leader>é",
-        function()
-          ui.nav_file(2)
-        end,
-        mode = "n",
-        desc = "Harpoon goto 2",
-      },
-      {
-        '<leader>"',
-        function()
-          ui.nav_file(3)
-        end,
-        mode = "n",
-        desc = "Harpoon goto 3",
-      },
-      {
-        "<leader>'",
-        function()
-          ui.nav_file(4)
-        end,
-        mode = "n",
-        desc = "Harpoon goto 4",
-      },
-      {
-        "<C-k>",
-        function()
-          ui.nav_next()
-        end,
-        mode = "n",
-        desc = "Harpoon next",
-      },
-    }
-  end,
-}
+
+-- return {
+--   "ThePrimeagen/harpoon",
+--   branch = "master",
+--   keys = function()
+--     local mark = require("harpoon.mark")
+--     local ui = require("harpoon.ui")
+--     return {
+--       { "<leader>a", mark.add_file, mode = "n", desc = "add to harpoon" },
+--       { "<C-e>", ui.toggle_quick_menu, mode = "n" },
+--       {
+--         "<leader>&",
+--         function()
+--           ui.nav_file(1)
+--         end,
+--         mode = "n",
+--         desc = "Harpoon goto 1",
+--       },
+--       {
+--         "<leader>é",
+--         function()
+--           ui.nav_file(2)
+--         end,
+--         mode = "n",
+--         desc = "Harpoon goto 2",
+--       },
+--       {
+--         '<leader>"',
+--         function()
+--           ui.nav_file(3)
+--         end,
+--         mode = "n",
+--         desc = "Harpoon goto 3",
+--       },
+--       {
+--         "<leader>'",
+--         function()
+--           ui.nav_file(4)
+--         end,
+--         mode = "n",
+--         desc = "Harpoon goto 4",
+--       },
+--       {
+--         "<C-k>",
+--         function()
+--           ui.nav_next()
+--         end,
+--         mode = "n",
+--         desc = "Harpoon next",
+--       },
+--     }
+--   end,
+-- }
