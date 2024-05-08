@@ -95,22 +95,22 @@ if true then
         },
 
         -- Toggle previous & next buffers stored within Harpoon list
-        {
-          mode = "n",
-          "<C-J>",
-          function()
-            harpoon:list():prev()
-          end,
-          desc = "Harpoon Prev",
-        },
-        {
-          mode = "n",
-          "<C-K>",
-          function()
-            harpoon:list():next()
-          end,
-          desc = "Harpoon Next",
-        },
+        -- {
+        --   mode = "n",
+        --   "<C-J>",
+        --   function()
+        --     harpoon:list():prev()
+        --   end,
+        --   desc = "Harpoon Prev",
+        -- },
+        -- {
+        --   mode = "n",
+        --   "<C-K>",
+        --   function()
+        --     harpoon:list():next()
+        --   end,
+        --   desc = "Harpoon Next",
+        -- },
       }
     end,
   }
