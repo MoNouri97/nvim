@@ -48,7 +48,7 @@ map("n", "N", "Nzzzv")
 map("n", "G", "Gzz")
 map("n", "*", "*zz")
 map("n", "<C-o>", "<C-o>zz")
-map("n", "%", "%zz")
+-- map("n", "%", "%zz")
 -- prime git conflict keymaps
 vim.keymap.set("n", "gj", "<cmd>diffget //2<CR>")
 vim.keymap.set("n", "gf", "<cmd>diffget //3<CR>")
