@@ -4,10 +4,11 @@ if true then
     branch = "harpoon2",
     enabled = true,
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = function()
-      local harpoon = require("harpoon")
-      harpoon:setup()
-    end,
+    opts = {
+      settings = {
+        save_on_toggle = true,
+      },
+    },
     keys = function()
       local harpoon = require("harpoon")
       local conf = require("telescope.config").values
