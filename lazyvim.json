@@ -1,13 +1,9 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.coding.luasnip",
-    "lazyvim.plugins.extras.coding.mini-surround",
-    "lazyvim.plugins.extras.editor.illuminate",
-    "lazyvim.plugins.extras.lsp.none-ls",
-    "lazyvim.plugins.extras.ui.edgy",
-    "lazyvim.plugins.extras.ui.treesitter-context"
+
   ],
   "news": {
     "NEWS.md": "5950"
   },
   "version": 6
+}
