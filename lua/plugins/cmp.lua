@@ -10,25 +10,11 @@ return {
   "hrsh7th/nvim-cmp",
   dependencies = { "hrsh7th/cmp-emoji" },
   opts = function(_, opts)
-    -- opts.formatting = {
-    -- format = function(entry, vim_item)
-    --   local kind = require("lazyvim.config").icons.kinds[vim_item.kind]
-    --   local strings = vim.split(vim_item.kind, "%s", { trimempty = true })
-    --   vim_item.kind = " " .. (strings[1] or "") .. " "
-    --   vim_item.menu = "    (" .. (strings[2] or "") .. ")"
-    --
-    --   return vim_item
-    -- end,
-    -- }
     local cmp = require("cmp")
     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
     local border_opts = {
-      -- border = "rounded",
       winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
       col_offset = -4,
-      -- side_padding = 1,
-      -- winhighlight = "Normal:FloatBorder,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
-      -- winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
     }
     ---@diagnostic disable-next-line: missing-fields
     opts.formatting = {

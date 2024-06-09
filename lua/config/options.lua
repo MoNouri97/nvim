@@ -9,3 +9,4 @@ vim.opt.scrolloff = 10
 
 -- Place a column line
 vim.opt.colorcolumn = "120"
+vim.opt.clipboard = "unnamedplus"

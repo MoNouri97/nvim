@@ -1,8 +1,6 @@
 {
   "test": {
     "prefix": "test",
-    "body": [
-      "testing testing ..."
-    ]
+    "body": ["testing testing ..."]
   }
 }
