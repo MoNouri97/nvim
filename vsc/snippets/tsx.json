@@ -106,5 +106,10 @@
       "import ${0:MaterialCommunityIcons} from 'react-native-vector-icons/${0:MaterialCommunityIcons}';"
     ],
     "description": "t from useTranslation hook"
+  },
+  "consoleLog": {
+    "prefix": "log",
+    "body": ["console.log($0);"],
+    "description": "console log a value"
   }
 }
