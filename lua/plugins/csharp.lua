@@ -21,6 +21,15 @@ if true then
         },
       },
     },
+    {
+      "nvimtools/none-ls.nvim",
+      enabled = true,
+      opts = function(_, opts)
+        opts.sources = {}
+        -- local nls = require("null-ls")
+        -- table.insert(opts.sources, nls.builtins.formatting.csharpier)
+      end,
+    },
   }
 end
 
@@ -60,20 +69,6 @@ return {
       },
     },
   },
-  -- {
-  --   "williamboman/mason-lspconfig.nvim",
-  --   -- opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "omnisharp") end,
-  --   opts = function(_, opts)
-  --     if not opts.ensure_installed then
-  --       opts.ensure_installed = {}
-  --     end
-  --     table.insert(opts.ensure_installed, "csharp_ls")
-  --     opts.inlay_hints = {
-  --       enabled = false,
-  --       exclude = {}, -- filetypes for which you don't want to enable inlay hints
-  --     }
-  --   end,
-  -- },
   {
     "stevearc/conform.nvim",
     -- optional = true,
