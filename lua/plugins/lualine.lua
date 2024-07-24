@@ -26,7 +26,8 @@ return {
         return ""
       end
 
-      local current_mark = "—"
+      -- local current_mark = "—"
+      local current_mark = "-"
 
       for i = 1, total_marks do
         local harpoon_entry = harpoon_list:get(i)
@@ -59,9 +60,9 @@ return {
     -- +-------------------------------------------------+
     opts.sections.lualine_a = { { "mode", separator = { left = "", right = "" } } }
     opts.sections.lualine_c = { harpoon_component, Util.pretty_path() }
-    opts.sections.lualine_y = { "filetype", "encoding" }
+    opts.sections.lualine_y = { "filetype" }
     opts.sections.lualine_z = {
-      { "progress", separator = { right = "" }, padding = { left = 1 } },
+      { "encoding", separator = { right = "" }, padding = { left = 1 } },
     }
   end,
 }
