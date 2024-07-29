@@ -9,7 +9,7 @@ return {
         layout_strategy = "horizontal",
         layout_config = {
           -- height = 0.95,
-          -- width = 0.95,
+          width = 0.95,
           horizontal = {
             prompt_position = "bottom",
             preview_width = 0.6,
