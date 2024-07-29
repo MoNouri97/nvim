@@ -2,12 +2,11 @@ return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
-    window = {
+    win = {
       border = "rounded",
     },
-    defaults = {
-      ["<leader>r"] = { name = "Run" },
-      -- ["<leader>fa"] = { name = "Find And" },
+    spec = {
+      { "<leader>r", group = "Run" },
     },
   },
 }
