@@ -61,7 +61,7 @@ return {
             -- DiagnosticVirtualTextWarn = { bg = colors.none },
             -- DiagnosticVirtualTextHint = { bg = colors.none },
             -- DiagnosticVirtualTextInfo = { bg = colors.none },
-            Pmenu = { bg = colors.none },
+            -- Pmenu = { bg = colors.none },
             -- Normal = { bg = colors.none },
             -- NormalFloat = { bg = colors.none },
             -- NeoTreeNormalFloat = { bg = colors.none },
