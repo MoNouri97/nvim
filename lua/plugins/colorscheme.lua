@@ -78,6 +78,22 @@ return {
           green = "#d2fac5",
         },
       },
+      no_italic = false, -- Force no italic
+      styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+        comments = { "italic" }, -- Change the style of comments
+        conditionals = { "italic" },
+        loops = {},
+        functions = { "italic" },
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {},
+        -- miscs = {}, -- Uncomment to turn off hard-coded styles
+      },
     },
   },
   {
@@ -88,7 +104,7 @@ return {
     opts = {
       -- These are the default settings
       bold = true,
-      italics = false,
+      italics = true,
       underline = true,
       undercurl = true,
     },
