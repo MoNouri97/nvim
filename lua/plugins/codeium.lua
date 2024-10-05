@@ -1,5 +1,9 @@
 -- nth fib number
 
+if true then
+  return {}
+end
+
 return {
   {
     "Exafunction/codeium.nvim",
