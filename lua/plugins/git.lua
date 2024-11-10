@@ -13,9 +13,9 @@ return {
         ignore_whitespace = false,
         virt_text_priority = 100,
       },
-      current_line_blame_formatter_opts = {
-        relative_time = true,
-      },
+      -- current_line_blame_formatter_opts = {
+      --   relative_time = true,
+      -- },
     },
   },
   {

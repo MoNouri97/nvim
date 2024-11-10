@@ -64,3 +64,15 @@ map("n", "<leader>rg", godot.GodtRun, { desc = "[R]un [G]odot Projet" })
 map("n", "<leader>-", function()
   require("oil").toggle_float()
 end, { desc = "Oil File Explorer" })
+
+-- godot start server listen
+local function file_exists(path)
+  local stat = vim.loop.fs_stat(path)
+  return stat ~= nil
+end
+local projectFile = vim.fn.getcwd() .. "/project.godot"
+if file_exists(projectFile) then
+  vim.fn.serverstop("./godothost")
+  vim.fn.serverstart("./godothost")
+  print("Listening to ./godothost")
+end

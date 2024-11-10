@@ -1,4 +1,5 @@
 local Util = require("lazyvim.util")
+local Terminal = require("snacks.terminal")
 
 local M = {}
 
@@ -46,10 +47,12 @@ end
 -- Start Lazygit
 function M.startLazygit()
   local current_buffer = vim.api.nvim_get_current_buf()
-  local float_term = Util.terminal(
-    { "lazygit" },
-    { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false, border = "rounded" }
-  )
+  local float_term =
+    Terminal.open("lazygit", { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false, border = "rounded" })
+  -- local float_term = Util.terminal(
+  --   { "lazygit" },
+  --   { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false, border = "rounded" }
+  -- )
   local created_buffer = float_term.buf
   -- set the custom keymap for "<c-i>" within it
   vim.api.nvim_buf_set_keymap(
