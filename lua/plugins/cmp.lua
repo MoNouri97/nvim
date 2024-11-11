@@ -15,6 +15,7 @@ return {
     local border_opts = {
       winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:Visual,Search:None",
       col_offset = -4,
+      side_padding = 2,
     }
     ---@diagnostic disable-next-line: missing-fields
     opts.formatting = {
