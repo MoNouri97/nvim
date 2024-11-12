@@ -1,8 +1,7 @@
-if true then
-  return {}
-end
+-- if true then
+--   return {}
+-- end
 return {
-
   "williamboman/mason.nvim",
   cmd = "Mason",
   keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
@@ -11,6 +10,14 @@ return {
     ensure_installed = {
       "stylua",
       "shfmt",
+      "csharpier",
+      "netcoredbg",
+      "gopls",
+      "gomodifytags",
+      "gotests",
+      "impl",
+      "iferr",
+      -- "dlv",
     },
     ui = {
       border = "rounded",

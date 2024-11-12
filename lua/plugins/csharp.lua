@@ -40,10 +40,6 @@ return {
     opts = { ensure_installed = { "c_sharp" } },
   },
   {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "csharpier", "netcoredbg" } },
-  },
-  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
