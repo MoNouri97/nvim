@@ -8,7 +8,7 @@ local godot = require("monouri.godot")
 
 local map = vim.keymap.set
 
-local copyLineDown = function()
+local function copyLineDown()
   local mode = vim.api.nvim_get_mode().mode
   local old_reg = vim.fn.getreg("+")
   local old_regtype = vim.fn.getregtype("+")
@@ -17,7 +17,6 @@ local copyLineDown = function()
   else
     vim.cmd("normal! yyp")
   end
-  ---@diagnostic disable-next-line: param-type-mismatch
   vim.fn.setreg("+", old_reg, old_regtype)
 end
 

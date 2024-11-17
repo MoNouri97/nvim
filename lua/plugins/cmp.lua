@@ -44,13 +44,14 @@ return {
       end,
     }
     opts.window = {
-      -- completion = border_opts,
-      -- documentation = border_opts,
-      completion = cmp.config.window.bordered(border_opts),
-      documentation = cmp.config.window.bordered(border_opts),
+      completion = border_opts,
+      documentation = border_opts,
+      -- completion = cmp.config.window.bordered(border_opts),
+      -- documentation = cmp.config.window.bordered(border_opts),
     }
 
     -- Customization for Pmenu
     vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#C792EA", bg = "NONE", italic = true })
+    -- vim.api.nvim_set_hl(0, "Mine", { fg = "#000000", bg = "#000000" })
   end,
 }
