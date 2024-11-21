@@ -20,10 +20,7 @@ return {
         find_files = {
           theme = "dropdown",
           preview = false,
-        },
-        git_files = {
-          theme = "dropdown",
-          preview = false,
+          hidden = true,
         },
       })
     end,

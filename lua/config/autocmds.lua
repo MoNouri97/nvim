@@ -11,3 +11,7 @@ vim.api.nvim_create_autocmd({ "FocusLost" }, {
     vim.cmd("wa")
   end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = LazyVim.lsp.action["source.organizeImports"],
+})
