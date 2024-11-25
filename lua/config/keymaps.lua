@@ -48,9 +48,9 @@ map("n", "G", "Gzz")
 map("n", "*", "*zz")
 map("n", "<C-o>", "<C-o>zz")
 -- map("n", "%", "%zz")
--- prime git conflict keymaps
-vim.keymap.set("n", "gj", "<cmd>diffget //2<CR>")
-vim.keymap.set("n", "gf", "<cmd>diffget //3<CR>")
+-- git conflict keymaps
+vim.keymap.set("n", "gh", "<cmd>diffget //2<CR>", { desc = "Get Change from other" })
+vim.keymap.set("n", "gl", "<cmd>diffget //3<CR>", { desc = "Get Change From local" })
 
 map("n", "<C-y>", "<CMD>%y<CR>", { desc = "Yank All" })
 -- lazygit
