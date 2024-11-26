@@ -85,7 +85,7 @@ return {
         loops = {},
         functions = { "italic" },
         keywords = {},
-        strings = {},
+        strings = { "italic" },
         variables = {},
         numbers = {},
         booleans = {},

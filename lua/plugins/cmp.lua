@@ -13,7 +13,7 @@ return {
     local cmp = require("cmp")
     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
     local border_opts = {
-      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:Visual,Search:None",
+      winhighlight = "Normal:NormalFloat,FloatBorder:NormalFloat,CursorLine:Visual,Search:None",
       col_offset = -4,
       side_padding = 2,
     }
