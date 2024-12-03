@@ -59,10 +59,12 @@ return {
     -- | A | B | C                             X | Y | Z |
     -- +-------------------------------------------------+
     -- opts.sections.lualine_a = { { "mode", separator = { left = "", right = "" } } }
+    opts.sections.lualine_a = { { "mode", separator = { left = "█", right = "" } } }
     opts.sections.lualine_c = { harpoon_component, Util.pretty_path() }
     opts.sections.lualine_y = { "filetype" }
     opts.sections.lualine_z = {
-      { "encoding", separator = { right = "" }, padding = { left = 1 } },
+      -- { "encoding", separator = { left = "", right = "█" }, padding = { left = 1 } },
+      { "encoding", separator = { left = "", right = "█" }, padding = { left = 1 } },
     }
   end,
 }
