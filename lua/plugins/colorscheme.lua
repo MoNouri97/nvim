@@ -22,6 +22,7 @@ return {
         alpha = true,
         cmp = true,
         flash = true,
+        fzf = true,
         gitsigns = true,
         illuminate = true,
         indent_blankline = { enabled = true },
