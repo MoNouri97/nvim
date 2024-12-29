@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 local Util = require("lazyvim.util")
 
 return {
@@ -16,13 +20,13 @@ return {
           },
         },
       })
-      opts.pickers = vim.tbl_deep_extend("force", opts.defaults or {}, {
-        find_files = {
-          theme = "dropdown",
-          preview = false,
-          hidden = true,
-        },
-      })
+      -- opts.pickers = vim.tbl_deep_extend("force", opts.defaults or {}, {
+      --   find_files = {
+      --     -- theme = "dropdown",
+      --     preview = false,
+      --     hidden = true,
+      --   },
+      -- })
     end,
     keys = {
       { "<leader>ff", Util.pick("find_files", { hidden = true }), desc = "[F]ind [F]iles" },
