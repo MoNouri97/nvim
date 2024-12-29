@@ -25,7 +25,8 @@ return {
       })
     end,
     keys = {
-      { "<leader>ff", Util.pick("find_files", { hidden = true }), desc = "[F]ind [Files]" },
+      { "<leader>ff", Util.pick("find_files", { hidden = true }), desc = "[F]ind [F]iles" },
+      { "<leader>fw", Util.pick("grep_string", { hidden = true }), desc = "[F]ind [W]ord" },
     },
   },
 }
