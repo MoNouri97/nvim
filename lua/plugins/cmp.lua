@@ -1,45 +1,55 @@
+-- if true then
+--   return {}
+-- end
+local ELLIPSIS_CHAR = "…"
+local MAX_LABEL_WIDTH = 20
+local MAX_PATH_WIDTH = 20
+
 local function limitStringLength(str, maxLength)
-  if string.len(str) > maxLength then
-    return string.sub(str, 1, maxLength)
-  else
-    return str
+  local truncated_label = vim.fn.strcharpart(str, 0, maxLength)
+  if truncated_label ~= str then
+    return truncated_label .. ELLIPSIS_CHAR
   end
+  return str
 end
 
 return {
   "hrsh7th/nvim-cmp",
-  dependencies = { "hrsh7th/cmp-emoji" },
   opts = function(_, opts)
-    local cmp = require("cmp")
-    opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
     local border_opts = {
       winhighlight = "Normal:NormalFloat,FloatBorder:NormalFloat,CursorLine:Visual,Search:None",
-      col_offset = -4,
+      col_offset = -2,
       side_padding = 2,
     }
-    ---@diagnostic disable-next-line: missing-fields
     opts.formatting = {
-      fields = { "kind", "abbr", "menu" },
+      fields = { "abbr", "kind", "menu" },
       format = function(entry, item)
+        -- icons
         local icons = require("lazyvim.config").icons.kinds
         local kind = item.kind
         if icons[item.kind] then
-          -- item.kind = icons[item.kind] .. item.kind
           item.kind = icons[item.kind]
         end
-        if entry.completion_item.detail ~= nil and entry.completion_item.detail ~= "" then
-          item.menu = limitStringLength(entry.completion_item.detail, 20)
+        -- import path
+        if
+          entry.completion_item.labelDetails ~= nil
+          and entry.completion_item.labelDetails.description ~= nil
+          and entry.completion_item.labelDetails.description ~= ""
+        then
+          -- item.menu = limitStringLength(entry.completion_item.detail, 20)
+          item.menu = limitStringLength(entry.completion_item.labelDetails.description, MAX_PATH_WIDTH)
         -- else
         --   item.menu = kind
         else
           item.menu = ({
             nvim_lsp = kind,
-            -- nvim_lsp = kind .. " [LSP]",
             luasnip = "[Snippet]",
             buffer = "[Buffer]",
             path = "[Path]",
           })[entry.source.name]
         end
+        -- label maxLength
+        item.abbr = limitStringLength(item.abbr, MAX_LABEL_WIDTH)
         return item
       end,
     }
@@ -51,7 +61,7 @@ return {
     }
 
     -- Customization for Pmenu
-    vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#C792EA", bg = "NONE", italic = true })
+    -- vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#C792EA", bg = "NONE", italic = true })
     -- vim.api.nvim_set_hl(0, "Mine", { fg = "#000000", bg = "#000000" })
   end,
 }
