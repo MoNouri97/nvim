@@ -2,8 +2,8 @@
 --   return {}
 -- end
 local ELLIPSIS_CHAR = "…"
-local MAX_LABEL_WIDTH = 20
-local MAX_PATH_WIDTH = 20
+local MAX_LABEL_WIDTH = 30
+local MAX_PATH_WIDTH = 40
 
 local function limitStringLength(str, maxLength)
   local truncated_label = vim.fn.strcharpart(str, 0, maxLength)
@@ -18,8 +18,9 @@ return {
   opts = function(_, opts)
     local border_opts = {
       winhighlight = "Normal:NormalFloat,FloatBorder:NormalFloat,CursorLine:Visual,Search:None",
-      col_offset = -2,
+      col_offset = -1,
       side_padding = 2,
+      scrollbar = true,
     }
     opts.formatting = {
       fields = { "abbr", "kind", "menu" },
