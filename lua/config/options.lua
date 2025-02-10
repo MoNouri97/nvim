@@ -10,3 +10,5 @@ vim.opt.scrolloff = 10
 -- Place a column line
 vim.opt.colorcolumn = "120"
 vim.opt.clipboard = "unnamedplus"
+-- lazyvim snacks_animate
+vim.g.snacks_animate = false
