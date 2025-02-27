@@ -24,22 +24,22 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Auto-close oil when leaving the buffer
-vim.api.nvim_create_autocmd("BufLeave", {
-  callback = function(ev)
-    local filetype = vim.bo[ev.buf].filetype
-    local ft = "oil"
-    if filetype == ft then
-      -- Use vim.defer_fn to avoid issues with autocmd execution context
-      vim.defer_fn(function()
-        -- Only close if buffer still exists and matches our filetype
-        if vim.api.nvim_buf_is_valid(ev.buf) and vim.bo[ev.buf].filetype == ft then
-          vim.cmd("silent! bd " .. ev.buf)
-        end
-      end, 10)
-    end
-  end,
-  desc = "Auto-close specific filetypes when leaving buffer",
-})
+-- vim.api.nvim_create_autocmd("BufLeave", {
+--   callback = function(ev)
+--     local filetype = vim.bo[ev.buf].filetype
+--     local ft = "oil"
+--     if filetype == ft then
+--       -- Use vim.defer_fn to avoid issues with autocmd execution context
+--       vim.defer_fn(function()
+--         -- Only close if buffer still exists and matches our filetype
+--         if vim.api.nvim_buf_is_valid(ev.buf) and vim.bo[ev.buf].filetype == ft then
+--           vim.cmd("silent! bd " .. ev.buf)
+--         end
+--       end, 10)
+--     end
+--   end,
+--   desc = "Auto-close specific filetypes when leaving buffer",
+-- })
 
 return {
   {
