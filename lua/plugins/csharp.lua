@@ -1,3 +1,12 @@
+-- if true then
+--   return {
+--     "seblj/roslyn.nvim",
+--     ft = "cs",
+--     opts = {
+--       -- your configuration comes here; leave empty for default settings
+--     },
+--   }
+-- end
 -- this is when using lazyvim extra omnisharp
 if true then
   return {

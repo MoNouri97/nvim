@@ -1,3 +1,4 @@
+-- q to quick & enter to change file
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "oil",
   callback = function()
@@ -22,6 +23,24 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Auto-close oil when leaving the buffer
+vim.api.nvim_create_autocmd("BufLeave", {
+  callback = function(ev)
+    local filetype = vim.bo[ev.buf].filetype
+    local ft = "oil"
+    if filetype == ft then
+      -- Use vim.defer_fn to avoid issues with autocmd execution context
+      vim.defer_fn(function()
+        -- Only close if buffer still exists and matches our filetype
+        if vim.api.nvim_buf_is_valid(ev.buf) and vim.bo[ev.buf].filetype == ft then
+          vim.cmd("silent! bd " .. ev.buf)
+        end
+      end, 10)
+    end
+  end,
+  desc = "Auto-close specific filetypes when leaving buffer",
+})
+
 return {
   {
     "stevearc/oil.nvim",
@@ -35,10 +54,6 @@ return {
         function()
           vim.cmd("vsplit | wincmd r | vertical resize 30")
           require("oil").open()
-          -- Get the buffer number of the Oil window
-          -- local oil_buf = vim.api.nvim_get_current_buf()
-          -- Create buffer-local keymap
-          -- vim.keymap.set("n", "q", ":q<CR>", { buffer = oil_buf, silent = true })
         end,
         desc = "Side Oil",
       },
