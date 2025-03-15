@@ -22,6 +22,10 @@
     "prefix": "export",
     "body": ["[Export] private ${1:float} $0;"]
   },
+  "autoload": {
+    "prefix": "autoload",
+    "body": ["[Autoload] private ${1:Debug} $0;"]
+  },
   "OnReady": {
     "prefix": "onReady",
     "body": ["[OnReady] private ${1:Type} $0;"]

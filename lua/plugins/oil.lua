@@ -71,6 +71,7 @@ return {
           ["q"] = "actions.close",
           ["<C-r>"] = "actions.refresh",
           ["-"] = "actions.parent",
+          ["<C-h>"] = "actions.parent",
           ["_"] = "actions.open_cwd",
           ["`"] = "actions.cd",
           ["~"] = "actions.tcd",
