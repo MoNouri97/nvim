@@ -1,3 +1,4 @@
+---@diagnostic disable: need-check-nil
 local Util = require("lazyvim.util")
 local Snacks = require("snacks")
 
@@ -171,6 +172,50 @@ function M.GodtRun(...)
   M.GodotRunScene(scene_name)
   -- local cwd = vim.fn.getcwd()
   -- vim.fn.execute("lcd " .. cwd)
+end
+
+-- Choose & Run scene
+function M.Choose()
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local conf = require("telescope.config").values
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+
+  -- Find all .tscn files
+  local handle = io.popen('find . -name "*.tscn" | sort')
+  local result = handle:read("*a")
+  handle:close()
+
+  -- Split the result into a table of filenames
+  local files = {}
+  for filename in string.gmatch(result, "[^\n]+") do
+    table.insert(files, filename)
+  end
+
+  if #files == 0 then
+    vim.notify("No .tscn files found", vim.log.levels.WARN)
+    return
+  end
+
+  -- Create the picker
+  pickers
+    .new({}, {
+      prompt_title = "Scene Files",
+      finder = finders.new_table({
+        results = files,
+      }),
+      sorter = conf.generic_sorter({}),
+      attach_mappings = function(prompt_bufnr, map)
+        actions.select_default:replace(function()
+          local selection = action_state.get_selected_entry()
+          actions.close(prompt_bufnr)
+          M.GodotRunScene(selection.value)
+        end)
+        return true
+      end,
+    })
+    :find()
 end
 
 -- Run arbitrary scene

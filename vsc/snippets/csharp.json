@@ -38,6 +38,14 @@
     "prefix": "ready",
     "body": ["public override void _Ready() {", "\t$0", "}"]
   },
+  "ExtentionMethod": {
+    "prefix": "extention",
+    "body": [
+      "public static void ${1:Name}(this ${2:Node3D} node ${3:,arg} ) {",
+      "\t$0",
+      "}"
+    ]
+  },
   "WireOnReady": {
     "prefix": "wire",
     "body": [

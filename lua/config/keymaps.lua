@@ -58,6 +58,8 @@ map("n", "<leader>gg", lazygit.startLazygit, { noremap = true, silent = true, de
 
 -- godot
 map("n", "<leader>rg", godot.GodtRun, { desc = "[R]un [G]odot Projet" })
+map("n", "<leader>rs", godot.Choose, { desc = "[R]un Godot [S]cene" })
+map("n", "<leader>rl", godot.GodotRunLast, { desc = "[R]un [L]ast Godot Scene" })
 
 -- oil
 map("n", "<leader>-", function()
