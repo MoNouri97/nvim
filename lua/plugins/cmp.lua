@@ -1,6 +1,6 @@
--- if true then
---   return {}
--- end
+if true then
+  return {}
+end
 local ELLIPSIS_CHAR = "…"
 local MAX_LABEL_WIDTH = 30
 local MAX_PATH_WIDTH = 40
