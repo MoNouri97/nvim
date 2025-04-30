@@ -47,6 +47,14 @@ return {
       },
       {
         mode = "n",
+        "<leader>A",
+        function()
+          harpoon:list():prepend()
+        end,
+        desc = "[A]dd to harpoon In Front",
+      },
+      {
+        mode = "n",
         "<C-e>",
         function()
           harpoon.ui:toggle_quick_menu(harpoon:list(), toggle_opts)
