@@ -1,4 +1,58 @@
 return {
+  -- { "wilmanbarrios/palenight.nvim", lazy = false, priority = 1000, name = "palenight" },
+  {
+    "wtfox/jellybeans.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = false,
+      italics = true,
+      flat_ui = true, -- toggles "flat UI" for pickers
+      background = {
+        dark = "jellybeans", -- default dark palette
+        light = "jellybeans_light", -- default light palette
+      },
+      plugins = {
+        all = false,
+        auto = true, -- will read lazy.nvim and apply the colors for plugins that are installed
+      },
+      -- on_highlights = function(highlights, colors) end,
+      -- on_colors = function(colors) end,
+    }, -- Optional
+  },
+  -- {
+  --   "rose-pine/neovim",
+  --   lazy = false,
+  --   name = "rose-pine",
+  --   config = function()
+  --     vim.cmd("colorscheme rose-pine")
+  --   end,
+  -- },
+  {
+    "webhooked/kanso.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      compile = false, -- enable compiling the colorscheme
+      undercurl = true, -- enable undercurls
+      commentStyle = { italic = true },
+      functionStyle = {},
+      keywordStyle = { italic = true },
+      statementStyle = {},
+      typeStyle = {},
+      disableItalics = false,
+      transparent = false, -- do not set background color
+      dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+      terminalColors = false, -- define vim.g.terminal_color_{0,17}
+      colors = { -- add/modify theme and palette colors
+        palette = {},
+        theme = { zen = {}, pearl = {}, ink = {}, all = {} },
+      },
+      overrides = function(colors) -- add/modify highlights
+        return {}
+      end,
+    },
+  },
   {
     "catppuccin/nvim",
     lazy = false,
@@ -10,7 +64,7 @@ return {
         light = "latte",
         dark = "mocha",
       },
-      transparent_background = true, -- disables setting the background color.
+      transparent_background = false, -- disables setting the background color.
       show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
       term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
       dim_inactive = {
@@ -97,19 +151,19 @@ return {
       },
     },
   },
-  {
-    "oxfist/night-owl.nvim",
-    enabled = false,
-    priority = 1000,
-    lazy = false,
-    opts = {
-      -- These are the default settings
-      bold = true,
-      italics = true,
-      underline = true,
-      undercurl = true,
-    },
-  },
+  -- {
+  --   "oxfist/night-owl.nvim",
+  --   enabled = true,
+  --   priority = 1000,
+  --   lazy = false,
+  --   opts = {
+  --     -- These are the default settings
+  --     bold = true,
+  --     italics = true,
+  --     underline = true,
+  --     undercurl = true,
+  --   },
+  -- },
   {
     "craftzdog/solarized-osaka.nvim",
     lazy = false,
