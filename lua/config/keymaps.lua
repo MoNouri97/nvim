@@ -66,6 +66,10 @@ map("n", "<leader>-", function()
   require("oil").toggle_float()
 end, { desc = "Oil File Explorer" })
 
+map("n", "<leader>E", function()
+  Snacks.picker("explorer")
+end, { desc = "File Picker/Tree" })
+
 -- godot start server listen
 local function file_exists(path)
   local stat = vim.loop.fs_stat(path)

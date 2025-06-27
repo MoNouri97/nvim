@@ -104,7 +104,7 @@ return {
         -- telescope = true,
         telescope = {
           enabled = true,
-          -- style = "nvchad",
+          style = "nvchad",
         },
         treesitter = true,
         which_key = true,
