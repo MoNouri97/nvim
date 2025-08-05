@@ -8,6 +8,7 @@ return {
   build = ":MasonUpdate",
   opts = {
     ensure_installed = {
+      "omnisharp",
       "stylua",
       "shfmt",
       "csharpier",

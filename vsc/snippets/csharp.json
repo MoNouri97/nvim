@@ -22,6 +22,19 @@
     "prefix": "export",
     "body": ["[Export] private ${1:float} $0;"]
   },
+  "export group": {
+    "prefix": "expgroup",
+    "body": ["[ExportGroup(\"${1:Refs}\")]\n$0"],
+    "description": "Export Group For Godot"
+  },
+  "export tool button": {
+    "prefix": "expbtn",
+    "body": [
+      "[ExportToolButton(\"${1:Update}\")]",
+      "public Callable update => Callable.From($1);"
+    ],
+    "description": "Export Tool Button For Godot"
+  },
   "autoload": {
     "prefix": "autoload",
     "body": ["[Autoload] private ${1:Debug} $0;"]
@@ -29,6 +42,10 @@
   "OnReady": {
     "prefix": "onReady",
     "body": ["[OnReady] private ${1:Type} $0;"]
+  },
+  "LogDisabled": {
+    "prefix": "logDisabled",
+    "body": ["[Export]private bool logDisabled = true;"]
   },
   "_Process": {
     "prefix": "process",
