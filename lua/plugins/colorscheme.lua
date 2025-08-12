@@ -20,39 +20,6 @@ return {
       -- on_colors = function(colors) end,
     }, -- Optional
   },
-  -- {
-  --   "rose-pine/neovim",
-  --   lazy = false,
-  --   name = "rose-pine",
-  --   config = function()
-  --     vim.cmd("colorscheme rose-pine")
-  --   end,
-  -- },
-  {
-    "webhooked/kanso.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      compile = false, -- enable compiling the colorscheme
-      undercurl = true, -- enable undercurls
-      commentStyle = { italic = true },
-      functionStyle = {},
-      keywordStyle = { italic = true },
-      statementStyle = {},
-      typeStyle = {},
-      disableItalics = false,
-      transparent = false, -- do not set background color
-      dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-      terminalColors = false, -- define vim.g.terminal_color_{0,17}
-      colors = { -- add/modify theme and palette colors
-        palette = {},
-        theme = { zen = {}, pearl = {}, ink = {}, all = {} },
-      },
-      overrides = function(colors) -- add/modify highlights
-        return {}
-      end,
-    },
-  },
   {
     "catppuccin/nvim",
     lazy = false,
@@ -101,17 +68,53 @@ return {
         notify = true,
         neotree = true,
         semantic_tokens = true,
-        -- telescope = true,
         telescope = {
           enabled = true,
-          style = "nvchad",
+          -- style = "nvchad",
         },
         treesitter = true,
         which_key = true,
       },
       highlight_overrides = {
-        all = function(colors)
+        all = function(C)
+          -- add flat style telescope since it was removed from catppuccin
           return {
+            TelescopeBorder = {
+              fg = C.mantle,
+
+              bg = C.mantle,
+            },
+            TelescopePromptBorder = {
+              fg = C.surface0,
+              bg = C.surface0,
+            },
+            TelescopePromptNormal = {
+              fg = C.text,
+              bg = C.surface0,
+            },
+            TelescopePromptPrefix = {
+              fg = C.flamingo,
+              bg = C.surface0,
+            },
+            TelescopeNormal = {
+              bg = C.mantle,
+            },
+            TelescopePreviewTitle = {
+              fg = C.base,
+              bg = C.green,
+            },
+            TelescopePromptTitle = {
+              fg = C.base,
+              bg = C.red,
+            },
+            TelescopeResultsTitle = {
+              fg = C.mantle,
+              bg = C.lavender,
+            },
+            TelescopeSelection = {
+              fg = C.text,
+              bg = C.surface0,
+            },
             -- DiagnosticVirtualTextError = { bg = colors.none },
             -- DiagnosticVirtualTextWarn = { bg = colors.none },
             -- DiagnosticVirtualTextHint = { bg = colors.none },
@@ -133,7 +136,7 @@ return {
           green = "#d2fac5",
         },
       },
-      no_italic = false, -- Force no italic
+      no_italic = true, -- Force no italic
       styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
         comments = { "italic" }, -- Change the style of comments
         conditionals = { "italic" },
@@ -151,6 +154,12 @@ return {
       },
     },
   },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+    },
+  },
   -- {
   --   "oxfist/night-owl.nvim",
   --   enabled = true,
@@ -164,14 +173,14 @@ return {
   --     undercurl = true,
   --   },
   -- },
-  {
-    "craftzdog/solarized-osaka.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = function()
-      return {
-        transparent = false,
-      }
-    end,
-  },
+  -- {
+  --   "craftzdog/solarized-osaka.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = function()
+  --     return {
+  --       transparent = false,
+  --     }
+  --   end,
+  -- },
 }

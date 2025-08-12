@@ -5,6 +5,14 @@ if true then
       opts = {
         inlay_hints = { enabled = false },
       },
+      -- config = function()
+      --   vim.lsp.enable("omnisharp")
+      --   vim.lsp.config("omnisharp", {
+      --     enable_roslyn_analyzers = true,
+      --     organize_imports_on_format = true,
+      --     enable_import_completion = true,
+      --   })
+      -- end,
     },
     {
       "stevearc/conform.nvim",
@@ -14,8 +22,9 @@ if true then
         },
         formatters = {
           csharpier = {
-            command = "dotnet-csharpier",
-            args = { "--write-stdout" },
+            command = "csharpier",
+            args = { "format", "--write-stdout" },
+            to_stdin = true,
           },
         },
       },
