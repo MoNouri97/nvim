@@ -22,6 +22,10 @@
     "prefix": "export",
     "body": ["[Export] private ${1:float} $0;"]
   },
+  "public export": {
+    "prefix": "pexport",
+    "body": ["[Export] public ${1:float} $0 { get; private set; }"]
+  },
   "export group": {
     "prefix": "expgroup",
     "body": ["[ExportGroup(\"${1:Refs}\")]\n$0"],
@@ -39,13 +43,24 @@
     "prefix": "autoload",
     "body": ["[Autoload] private ${1:Debug} $0;"]
   },
+  "staticAutoload": {
+    "prefix": "staticInstance",
+    "body": [
+      "public static ${TM_FILENAME_BASE:ClassName} Instance { get; private set; }"
+    ]
+  },
   "OnReady": {
     "prefix": "onReady",
     "body": ["[OnReady] private ${1:Type} $0;"]
   },
+  "getset": {
+    "prefix": "getset",
+    "body": ["{ get; private set; }"],
+    "description": "property getter & setter"
+  },
   "LogDisabled": {
     "prefix": "logDisabled",
-    "body": ["[Export]private bool logDisabled = true;"]
+    "body": ["[Export]public bool logDisabled = true;"]
   },
   "_Process": {
     "prefix": "process",
@@ -79,5 +94,9 @@
       "public string[] _get_tool_buttons()",
       "{ return new string[] { \"$0\" };} "
     ]
+  },
+  "IsEditorHint check": {
+    "prefix": "editorhint",
+    "body": ["if (Engine.IsEditorHint())", "{", "\treturn;", "}"]
   }
 }
