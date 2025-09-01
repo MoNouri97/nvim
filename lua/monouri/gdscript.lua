@@ -17,6 +17,9 @@ function M.get_indent(lnum)
   local prev_line = vim.api.nvim_buf_get_lines(0, prev_lnum - 1, prev_lnum, false)[1]
   local prev_indent = vim.fn.indent(prev_lnum)
   local shiftwidth = vim.fn.shiftwidth()
+  if true then
+    return prev_indent + shiftwidth
+  end
 
   -- If this line is explicitly joined: If the previous line was also joined,
   -- line it up with that one, otherwise add two 'shiftwidth'
@@ -118,7 +121,7 @@ local function setup()
   vim.bo.shiftwidth = 2 -- Set preferred indent width
   vim.bo.tabstop = 2
   vim.bo.expandtab = true
-  vim.bo.indentexpr = ':lua require("monouri.gdscript").get_indent(v:lnum)'
+  -- vim.bo.indentexpr = ':lua require("monouri.gdscript").get_indent(v:lnum)'
   vim.bo.indentkeys = vim.bo.indentkeys .. ",<:>,=elif,=except"
 end
 

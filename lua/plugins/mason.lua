@@ -7,8 +7,12 @@ return {
   keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
   build = ":MasonUpdate",
   opts = {
+    registries = {
+      "github:mason-org/mason-registry",
+      "github:Crashdummyy/mason-registry",
+    },
     ensure_installed = {
-      "omnisharp",
+      -- "omnisharp",
       "stylua",
       "shfmt",
       "csharpier",
@@ -20,9 +24,9 @@ return {
       "iferr",
       -- "dlv",
     },
-    ui = {
-      border = "rounded",
-    },
+    -- ui = {
+    --   border = "rounded",
+    -- },
   },
   ---@param opts MasonSettings | {ensure_installed: string[]}
   config = function(_, opts)

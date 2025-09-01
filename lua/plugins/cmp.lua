@@ -13,15 +13,16 @@ local function limitStringLength(str, maxLength)
   return str
 end
 
-local cmp = require("cmp")
 return {
   "hrsh7th/nvim-cmp",
   opts = function(_, opts)
+    local cmp = require("cmp")
+
     local border_opts = {
-      winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-      -- col_offset = -1,
+      winhighlight = "Normal:NormalFloat,FloatBorder:NormalFloat,CursorLine:Visual,Search:None",
+      col_offset = -1,
       side_padding = 2,
-      scrollbar = false,
+      scrollbar = true,
     }
     opts.formatting = {
       fields = { "abbr", "kind", "menu" },
@@ -56,6 +57,7 @@ return {
       end,
     }
     opts.window = {
+
       -- completion = border_opts,
       -- documentation = border_opts,
       completion = cmp.config.window.bordered(border_opts),

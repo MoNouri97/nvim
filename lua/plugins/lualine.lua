@@ -62,7 +62,31 @@ return {
     -- opts.sections.lualine_a = { { "mode", separator = { left = "█", right = "" } } }
     opts.sections.lualine_a = { { "mode", separator = { left = "", right = "" } } }
     opts.sections.lualine_c = { harpoon_component, Util.pretty_path() }
-    opts.sections.lualine_y = { "filetype" }
+    opts.sections.lualine_y = {
+      { "filetype" },
+      {
+        "diagnostics",
+        sources = { "nvim_diagnostic" }, -- uses vim.diagnostic
+        sections = { "error", "warn", "info", "hint" },
+        -- diagnostics_color = {
+        --   error = "DiagnosticError",
+        --   warn = "DiagnosticWarn",
+        --   info = "DiagnosticInfo",
+        --   hint = "DiagnosticHint",
+        -- },
+        symbols = {
+          error = " ",
+          warn = " ",
+          info = " ",
+          hint = " ",
+        },
+        colored = true,
+        update_in_insert = false,
+        -- always_visible = false,
+        separator = { left = "", right = "" },
+        padding = { left = 1 },
+      },
+    }
     opts.sections.lualine_z = {
       -- { "encoding", separator = { left = "", right = "█" }, padding = { left = 1 } },
       { "encoding", separator = { left = "", right = "" }, padding = { left = 1 } },

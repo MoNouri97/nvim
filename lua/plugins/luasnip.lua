@@ -9,8 +9,8 @@ return {
     wants = "friendly-snippets",
     after = "nvim-cmp",
     config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./vsc" } })
+      require("luasnip.loaders.from_vscode").lazy_load({ exclude = { "gdscript" } })
     end,
   },
 }
