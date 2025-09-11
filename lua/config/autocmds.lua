@@ -11,6 +11,27 @@ vim.api.nvim_create_autocmd({ "FocusLost" }, {
     vim.cmd("wa")
   end,
 })
+-- Create an autogroup for generated buffer management
+local generated_buffers = vim.api.nvim_create_augroup("GeneratedBuffers", { clear = true })
+
+-- Auto-close buffers with "**generated**" in the name when leaving them
+vim.api.nvim_create_autocmd("BufLeave", {
+  group = generated_buffers,
+  pattern = "*",
+  callback = function()
+    local bufname = vim.api.nvim_buf_get_name(0)
+    if bufname:match("generated") then
+      -- Use vim.schedule to avoid issues with buffer operations during BufLeave
+      vim.schedule(function()
+        local bufnr = vim.fn.bufnr(bufname)
+        if bufnr ~= -1 and vim.api.nvim_buf_is_valid(bufnr) then
+          print("removing buffer ...")
+          vim.api.nvim_buf_delete(bufnr, { force = true })
+        end
+      end)
+    end
+  end,
+})
 -- FIXME: under test
 -- vim.api.nvim_create_autocmd("FocusLost", {
 --   callback = function()
