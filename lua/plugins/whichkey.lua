@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   opts = {
     ---@type false | "classic" | "modern" | "helix"
-    preset = "classic",
+    preset = "helix",
     win = {
       -- border = "rounded",
     },
