@@ -60,6 +60,11 @@ return {
     end,
     keys = {
       { "<leader>ff", LazyVim.pick("find_files", { hidden = true }), desc = "[F]ind [F]iles" },
+      {
+        "<leader>fA",
+        LazyVim.pick("find_files", { hidden = true, no_ignore = true }),
+        desc = "[F]ind [A]ll files(no_ignore)",
+      },
       { "<leader>fw", LazyVim.pick("grep_string", { hidden = true }), desc = "[F]ind [W]ord" },
     },
   },
