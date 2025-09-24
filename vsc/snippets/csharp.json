@@ -18,13 +18,15 @@
     "prefix": "test",
     "body": ["testing testing ..."]
   },
-  "export": {
-    "prefix": "export",
-    "body": ["[Export] private ${1:float} $0;"]
+  "private export": {
+    "prefix": "pexport",
+    "body": ["[Export] private ${1:float} $0;"],
+    "description": "Private Export Member For Godot"
   },
   "public export": {
-    "prefix": "pexport",
-    "body": ["[Export] public ${1:float} $0 { get; private set; }"]
+    "prefix": "export",
+    "body": ["[Export] public ${1:float} $0 { get; private set; }"],
+    "description": "Public Export Member For Godot"
   },
   "export group": {
     "prefix": "expgroup",
