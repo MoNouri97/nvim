@@ -17,7 +17,13 @@ return {
   "hrsh7th/nvim-cmp",
   opts = function(_, opts)
     local cmp = require("cmp")
-
+    opts.sources = cmp.config.sources({
+      -- { name = "lazydev" },
+      { name = "nvim_lsp" },
+      -- { name = "path" },
+    }, {
+      -- { name = "buffer" },
+    })
     local border_opts = {
       winhighlight = "Normal:NormalFloat,FloatBorder:NormalFloat,CursorLine:Visual,Search:None",
       col_offset = -1,
