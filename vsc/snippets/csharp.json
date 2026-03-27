@@ -64,6 +64,14 @@
     "prefix": "logDisabled",
     "body": ["[Export]public bool logDisabled = true;"]
   },
+  "LogGreen": {
+    "prefix": "LogGrn",
+    "body": ["this.LogGreen(\"$0\")"]
+  },
+  "LogYellow": {
+    "prefix": "LogYlw",
+    "body": ["this.LogYellow(\"$0\")"]
+  },
   "_Process": {
     "prefix": "process",
     "body": ["public override void _Process(double delta) {", "\t$0", "}"]

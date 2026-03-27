@@ -2,6 +2,7 @@ return {
   { "ThePrimeagen/vim-be-good" },
   { "akinsho/bufferline.nvim", enabled = false },
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
+  -- { "folke/noice.nvim", enabled = false },
   -- filename on top
   {
     "b0o/incline.nvim",
