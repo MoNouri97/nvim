@@ -26,6 +26,16 @@ function LazygitEdit(original_buffer)
 
   -- Combine with the current working directory to get the full path
   local cwd = Util.root.get()
+  cwd = cwd:gsub("/$", "") -- Remove trailing slash
+
+  -- Extract last segment of cwd and first segment of rel_filepath
+  local cwd_last = cwd:match("([^/]+)$")
+  local rel_first = rel_filepath:match("^([^/]+)")
+
+  -- If they match, remove the first segment from rel_filepath
+  if cwd_last == rel_first then
+    rel_filepath = rel_filepath:gsub("^[^/]+/?", "")
+  end
   local abs_filepath = cwd .. "/" .. rel_filepath
 
   print("Opening " .. abs_filepath)

@@ -1,6 +1,13 @@
 return {
   -- { "wilmanbarrios/palenight.nvim", lazy = false, priority = 1000, name = "palenight" },
   {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin-mocha",
+      -- colorscheme = "opencode",
+    },
+  },
+  {
     "wtfox/jellybeans.nvim",
     lazy = false,
     priority = 1000,
@@ -155,12 +162,6 @@ return {
     },
   },
   {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin-mocha",
-    },
-  },
-  {
     "rebelot/kanagawa.nvim",
     enabled = true,
     priority = 1000,
@@ -202,6 +203,36 @@ return {
       background = { -- map the value of 'background' option to a theme
         dark = "wave", -- try "dragon" !
         light = "lotus",
+      },
+    },
+  },
+  {
+    "garymjr/opencode.nvim",
+    name = "opentheme",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = "dark", -- "dark" or "light"
+      transparent = false, -- Enable transparent background
+      terminal_colors = true, -- Apply colors to terminal
+      styles = {
+        comments = { italic = true },
+        keywords = { bold = true },
+        functions = {},
+        variables = {},
+        types = {},
+      },
+      integrations = {
+        telescope = true,
+        nvimtree = true,
+        which_key = true,
+        cmp = true,
+        gitsigns = true,
+        treesitter = true,
+      },
+      highlight_overrides = {
+        -- Custom highlight overrides
+        Normal = { fg = "#ffffff" },
       },
     },
   },
