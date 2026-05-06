@@ -192,7 +192,7 @@ local function find_godot_executable(version)
   for _, folder in ipairs(folders) do
     local exe = search_for_executable(folder, search_pattern)
     if exe then
-      print("Found Godot executable: " .. exe)
+      print("Found Godot executable: " .. exe .. " for version" .. version)
       return exe
     end
   end

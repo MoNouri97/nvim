@@ -52,7 +52,7 @@ return {
       {
         "<leader>e",
         function()
-          vim.cmd("vsplit | wincmd r | vertical resize 30")
+          vim.cmd("leftabove vsplit | vertical resize 30")
           require("oil").open()
         end,
         desc = "Side Oil",
