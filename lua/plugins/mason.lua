@@ -8,6 +8,7 @@ return {
   build = ":MasonUpdate",
   opts = {
     registries = {
+      --- for roslyn
       "github:mason-org/mason-registry",
       "github:Crashdummyy/mason-registry",
     },
