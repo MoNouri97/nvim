@@ -32,6 +32,42 @@ vim.api.nvim_create_autocmd("BufLeave", {
     end
   end,
 })
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+    local map = vim.keymap.set
+    map("n", "gd", require("telescope.builtin").lsp_definitions, {
+      desc = "Goto Definition",
+      buffer = bufnr,
+    })
+    map("n", "gr", require("telescope.builtin").lsp_references, {
+      desc = "Goto References",
+      buffer = bufnr,
+    })
+
+    map("n", "gI", vim.lsp.buf.implementation, { desc = "Goto Implementation", buffer = bufnr })
+    map("n", "gy", vim.lsp.buf.type_definition, { desc = "Goto T[y]pe Definition", buffer = bufnr })
+    map("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration", buffer = bufnr })
+    map("n", "K", function()
+      return vim.lsp.buf.hover()
+    end, { desc = "Hover", buffer = bufnr })
+    map("n", "gK", function()
+      return vim.lsp.buf.signature_help()
+    end, { desc = "Signature Help", buffer = bufnr })
+    map("i", "<c-k>", function()
+      return vim.lsp.buf.signature_help()
+    end, { desc = "Signature Help", buffer = bufnr })
+    map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action", buffer = bufnr })
+    map({ "n", "x" }, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens", buffer = bufnr })
+    map("n", "<leader>cC", vim.lsp.codelens.refresh, { desc = "Refresh & Display Codelens", buffer = bufnr })
+    map("n", "<leader>cR", function()
+      Snacks.rename.rename_file()
+    end, { desc = "Rename File", buffer = bufnr })
+    map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename", buffer = bufnr })
+    map("n", "<leader>cA", LazyVim.lsp.action.source, { desc = "Source Action", buffer = bufnr })
+  end,
+})
+
 -- FIXME: under test
 -- vim.api.nvim_create_autocmd("FocusLost", {
 --   callback = function()
