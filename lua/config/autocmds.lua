@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd("BufLeave", {
   end,
 })
 vim.api.nvim_create_autocmd("LspAttach", {
+  pattern = "cs",
   callback = function(args)
     local bufnr = args.buf
     local map = vim.keymap.set
@@ -65,6 +66,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, { desc = "Rename File", buffer = bufnr })
     map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename", buffer = bufnr })
     map("n", "<leader>cA", LazyVim.lsp.action.source, { desc = "Source Action", buffer = bufnr })
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "cs",
+  callback = function()
+    vim.lsp.enable("roslyn_ls")
+    vim.lsp.config("roslyn_ls", {
+      ["csharp|background_analysis"] = {
+        dotnet_analyzer_diagnostics_scope = "openFiles",
+        dotnet_compiler_diagnostics_scope = "openFiles",
+      },
+      enable_roslyn_analyzers = true,
+      organize_imports_on_format = true,
+      enable_import_completion = true,
+    })
   end,
 })
 

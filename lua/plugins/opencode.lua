@@ -1,7 +1,7 @@
 -- this is an ai agent plugin
 return {
   "nickjvandyke/opencode.nvim",
-  version = "*", -- Latest stable release
+  -- version = "*", -- Latest stable release
   dependencies = {
     {
       -- `snacks.nvim` integration is recommended, but optional
@@ -39,11 +39,9 @@ return {
     vim.keymap.set({ "n", "x" }, "<C-a>", function()
       require("opencode").ask("@this: ", { submit = true })
     end, { desc = "Ask opencode…" })
-
     vim.keymap.set({ "n", "x" }, "<C-x>", function()
       require("opencode").select()
     end, { desc = "Execute opencode action…" })
-
     vim.keymap.set({ "n", "t" }, "<C-.>", function()
       require("opencode").toggle()
     end, { desc = "Toggle opencode" })
