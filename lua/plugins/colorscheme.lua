@@ -79,6 +79,10 @@ return {
           enabled = true,
           -- style = "nvchad",
         },
+        snacks = {
+          enabled = true,
+          indent_scope_color = "", -- catppuccin color (eg. `lavender`) Default: overlay2
+        },
         treesitter = true,
         which_key = true,
       },
@@ -121,6 +125,46 @@ return {
             TelescopeSelection = {
               fg = C.text,
               bg = C.surface0,
+            },
+            -- flat style snacks picker like telescope
+            SnacksPicker = {
+              bg = C.mantle,
+            },
+            SnacksPickerBorder = {
+              fg = C.mantle,
+              bg = C.mantle,
+            },
+            SnacksPickerInput = {
+              fg = C.text,
+              bg = C.surface0,
+            },
+            SnacksPickerInputBorder = {
+              fg = C.surface0,
+              bg = C.surface0,
+            },
+            SnacksPickerPrompt = {
+              fg = C.flamingo,
+              bg = C.surface0,
+            },
+            SnacksPickerSelected = {
+              fg = C.text,
+              bg = C.surface0,
+            },
+            SnacksPickerTitle = {
+              fg = C.base,
+              bg = C.lavender,
+            },
+            SnacksPickerPreviewTitle = {
+              fg = C.base,
+              bg = C.green,
+            },
+            SnacksPickerInputTitle = {
+              fg = C.base,
+              bg = C.red,
+            },
+            SnacksPickerListTitle = {
+              fg = C.mantle,
+              bg = C.lavender,
             },
             -- DiagnosticVirtualTextError = { bg = colors.none },
             -- DiagnosticVirtualTextWarn = { bg = colors.none },
