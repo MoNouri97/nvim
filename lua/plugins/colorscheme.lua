@@ -187,7 +187,7 @@ return {
           green = "#d2fac5",
         },
       },
-      no_italic = true, -- Force no italic
+      no_italic = false, -- Force no italic
       styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
         comments = { "italic" }, -- Change the style of comments
         conditionals = { "italic" },
@@ -197,7 +197,7 @@ return {
         strings = { "italic" },
         variables = {},
         numbers = {},
-        booleans = {},
+        booleans = { "italic" },
         properties = {},
         types = {},
         operators = {},
