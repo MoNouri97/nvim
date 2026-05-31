@@ -62,9 +62,6 @@ map("n", "<leader>rs", godot.Choose, { desc = "[R]un Godot [S]cene" })
 map("n", "<leader>rl", godot.GodotRunLast, { desc = "[R]un [L]ast Godot Scene" })
 
 -- oil
-map("n", "<leader>-", function()
-  require("oil").toggle_float()
-end, { desc = "Oil File Explorer" })
 
 map("n", "<leader>E", function()
   Snacks.picker("explorer")

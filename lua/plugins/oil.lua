@@ -57,6 +57,13 @@ return {
         end,
         desc = "Side Oil",
       },
+      {
+        "<leader>-",
+        function()
+          require("oil").toggle_float()
+        end,
+        desc = "Oil File Explorer",
+      },
     },
     config = function()
       require("oil").setup({
