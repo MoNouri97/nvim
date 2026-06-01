@@ -73,4 +73,5 @@ return {
       "nvim-telescope/telescope.nvim",
     },
   },
+  { "sindrets/diffview.nvim" },
 }
