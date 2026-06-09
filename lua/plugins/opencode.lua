@@ -1,3 +1,11 @@
+local opencode_cmd = "opencode --port"
+---@type snacks.terminal.Opts
+local snacks_terminal_opts = {
+  win = {
+    position = "right",
+    enter = false,
+  },
+}
 -- this is an ai agent plugin
 return {
   "nickjvandyke/opencode.nvim",
@@ -30,24 +38,29 @@ return {
   config = function()
     ---@type opencode.Opts
     vim.g.opencode_opts = {
-      -- Your configuration, if any; goto definition on the type or field for details
+      server = {
+        start = function()
+          require("snacks.terminal").open(opencode_cmd, snacks_terminal_opts)
+        end,
+      },
     }
 
+    -- Optionally show upon submitting prompt
+    vim.api.nvim_create_autocmd("User", {
+      pattern = { "OpencodeEvent:tui.command.execute" },
+      callback = function(args)
+        ---@type opencode.server.Event
+        local event = args.data.event
+        if event.properties.command == "prompt.submit" then
+          local win = require("snacks.terminal").get(opencode_cmd, { create = false })
+          if win then
+            win:show()
+          end
+        end
+      end,
+    })
+
     vim.o.autoread = true -- Required for `opts.events.reload`
-
-    vim.keymap.set({ "n", "x" }, "<C-x>", function()
-      require("opencode").select()
-    end, { desc = "Execute opencode action…" })
-    vim.keymap.set({ "n", "t" }, "<C-.>", function()
-      require("opencode").toggle()
-    end, { desc = "Toggle opencode" })
-
-    vim.keymap.set("n", "<S-C-u>", function()
-      require("opencode").command("session.half.page.up")
-    end, { desc = "Scroll opencode up" })
-    vim.keymap.set("n", "<S-C-d>", function()
-      require("opencode").command("session.half.page.down")
-    end, { desc = "Scroll opencode down" })
   end,
   keys = {
     {
@@ -69,9 +82,19 @@ return {
     {
       "<leader>oo",
       function()
-        require("opencode").toggle()
+        require("opencode").start()
       end,
       mode = { "n" },
+      desc = "Start opencode",
+    },
+    {
+      "<A-;>",
+      function()
+        -- Can also leverage toggle functionality.
+        -- Avoid <leader> here — Neovim watches for keymaps in terminal mode, so your leader key will have input delay.
+        require("snacks.terminal").toggle(opencode_cmd, snacks_terminal_opts)
+      end,
+      mode = { "n", "t" },
       desc = "Toggle opencode",
     },
     {
