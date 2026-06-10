@@ -102,7 +102,7 @@ return {
       function()
         return require("opencode").operator("@this ")
       end,
-      mode = { "n" },
+      mode = { "n", "v" },
       desc = "Add range to opencode",
       expr = true,
     },
