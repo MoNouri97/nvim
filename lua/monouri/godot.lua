@@ -365,7 +365,7 @@ function M.GodotRunScene(scene_name)
     end)
     return
   end
-  local godot_command = vim.fn.shellescape(godot) .. " " .. vim.fn.shellescape(scene_name)
+  local godot_command = vim.fn.shellescape(godot) .. " --nvim " .. vim.fn.shellescape(scene_name)
   local build_command = "dotnet build"
   local cmd = build_command .. " && " .. godot_command .. " && $SHELL"
   s_last_scene_run = scene_name
