@@ -82,7 +82,7 @@ return {
     {
       "<leader>oo",
       function()
-        require("opencode").start()
+        require("opencode").toggle()
       end,
       mode = { "n" },
       desc = "Start opencode",

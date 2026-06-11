@@ -118,9 +118,9 @@ end
 
 local function setup()
   -- Set up buffer-local indentation settings
-  vim.bo.shiftwidth = 2 -- Set preferred indent width
-  vim.bo.tabstop = 2
-  vim.bo.expandtab = true
+  -- vim.bo.shiftwidth = 2 -- Set preferred indent width
+  -- vim.bo.tabstop = 2
+  -- vim.bo.expandtab = true
   -- vim.bo.indentexpr = ':lua require("monouri.gdscript").get_indent(v:lnum)'
   vim.bo.indentkeys = vim.bo.indentkeys .. ",<:>,=elif,=except"
 end

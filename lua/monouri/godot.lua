@@ -283,11 +283,11 @@ function ListAllSavedPaths()
 end
 
 -- Create user commands
-vim.api.nvim_create_user_command("SaveDirPath", function()
+vim.api.nvim_create_user_command("GodotSaveDirPath", function()
   SavePathForCurrentDirectory()
 end, {})
-vim.api.nvim_create_user_command("ShowDirPath", DisplayPathForCurrentDirectory, {})
-vim.api.nvim_create_user_command("ListAllDirPaths", ListAllSavedPaths, {})
+vim.api.nvim_create_user_command("GodotShowDirPath", DisplayPathForCurrentDirectory, {})
+vim.api.nvim_create_user_command("GodotListAllDirPaths", ListAllSavedPaths, {})
 
 -- Run last scene
 function M.GodotRunLast()
@@ -313,12 +313,6 @@ end
 
 -- Choose & Run scene
 function M.Choose()
-  local pickers = require("telescope.pickers")
-  local finders = require("telescope.finders")
-  local conf = require("telescope.config").values
-  local actions = require("telescope.actions")
-  local action_state = require("telescope.actions.state")
-
   -- Find all .tscn files
   local handle = io.popen('find . -name "*.tscn" | sort')
   local result = handle:read("*a")
@@ -335,24 +329,13 @@ function M.Choose()
     return
   end
 
-  -- Create the picker
-  pickers
-    .new({}, {
-      prompt_title = "Scene Files",
-      finder = finders.new_table({
-        results = files,
-      }),
-      sorter = conf.generic_sorter({}),
-      attach_mappings = function(prompt_bufnr, map)
-        actions.select_default:replace(function()
-          local selection = action_state.get_selected_entry()
-          actions.close(prompt_bufnr)
-          M.GodotRunScene(selection.value)
-        end)
-        return true
-      end,
-    })
-    :find()
+  vim.ui.select(files, {
+    prompt = "Scene Files",
+  }, function(selection)
+    if selection then
+      M.GodotRunScene(selection)
+    end
+  end)
 end
 
 -- Run arbitrary scene
