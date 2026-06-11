@@ -200,6 +200,25 @@ local function find_godot_executable(version)
   print("No executable found for " .. version)
   return nil
 end
+local function find_all_godot_executables()
+  local base_path = vim.fn.expand("~/.local/share/godot/app_userdata/Godots/versions/")
+  if vim.fn.isdirectory(base_path) == 0 then
+    return {}
+  end
+  local folders = vim.fn.glob(base_path .. "Godot_v*", false, true)
+  local results = {}
+  for _, folder in ipairs(folders) do
+    if vim.fn.isdirectory(folder) == 1 then
+      local fname = vim.fn.fnamemodify(folder, ":t")
+      local exe = search_for_executable(folder, "Godot_v")
+      if exe then
+        table.insert(results, { path = exe, display = fname })
+      end
+    end
+  end
+  return results
+end
+
 ---Add the godot bin path for the current_dir
 ---@param callback? function
 function SavePathForCurrentDirectory(callback)
@@ -216,28 +235,44 @@ function SavePathForCurrentDirectory(callback)
     save_or_create(godot_exec, current_dir)
     return
   end
-  -- Ask the user for a path input
-  vim.ui.input({
-    prompt = "Enter path for Godot: ",
-    completion = "file", -- Enables file path completion
-  }, function(input)
-    -- Check if the user provided input or cancelled
-    if input then
-      local res = save_or_create(input, current_dir)
-      if res then
-        -- Save to file
-        if not res then
-          return
+  -- Show picker of available godot executables
+  local godots = find_all_godot_executables()
+  if #godots > 0 then
+    vim.ui.select(godots, {
+      prompt = "Select Godot executable",
+      format_item = function(item)
+        return item.display
+      end,
+    }, function(selection)
+      if selection then
+        save_or_create(selection.path, current_dir)
+        if callback then
+          callback(selection.path)
         end
-        if callback ~= nil then
-          callback(input)
-        end
-        vim.notify("Path saved for " .. current_dir .. ": " .. input, vim.log.levels.INFO)
+        vim.notify("Path saved for " .. current_dir .. ": " .. selection.path, vim.log.levels.INFO)
+      else
+        vim.notify("Selection cancelled", vim.log.levels.WARN)
       end
-    else
-      vim.notify("Path input cancelled", vim.log.levels.WARN)
-    end
-  end)
+    end)
+  else
+    -- fallback: manual input
+    vim.ui.input({
+      prompt = "Enter path for Godot: ",
+      completion = "file",
+    }, function(input)
+      if input then
+        local res = save_or_create(input, current_dir)
+        if res then
+          if callback then
+            callback(input)
+          end
+          vim.notify("Path saved for " .. current_dir .. ": " .. input, vim.log.levels.INFO)
+        end
+      else
+        vim.notify("Path input cancelled", vim.log.levels.WARN)
+      end
+    end)
+  end
 end
 
 function GetCurrentSavedPath()
