@@ -3,12 +3,36 @@ local Util = require("lazyvim.util")
 local Snacks = require("snacks")
 
 local M = {}
+
+local config = {
+  base_path = "~/.local/share/godot/app_userdata/Godots/versions/",
+  cache_file = vim.fn.stdpath("cache") .. "/saved_paths.json",
+  auto_detect = true,
+}
+
+function M.setup(opts)
+  opts = opts or {}
+  if opts.base_path then
+    config.base_path = opts.base_path
+  end
+  if opts.cache_file then
+    config.cache_file = opts.cache_file
+  end
+  if opts.auto_detect ~= nil then
+    config.auto_detect = opts.auto_detect
+  end
+  -- Create user commands
+  vim.api.nvim_create_user_command("GodotSaveDirPath", function()
+    SavePathForCurrentDirectory()
+  end, {})
+  vim.api.nvim_create_user_command("GodotShowDirPath", DisplayPathForCurrentDirectory, {})
+  vim.api.nvim_create_user_command("GodotListAllDirPaths", ListAllSavedPaths, {})
+end
 local s_last_scene_run = ""
 local godot = nil
 -- Ask & Save Godot Path
 -- File to store the paths
-local config_dir = vim.fn.stdpath("cache")
-local cache_file = config_dir .. "/saved_paths.json"
+local cache_file = config.cache_file
 
 -- Function to load saved paths from the file
 local function load_saved_paths()
@@ -177,7 +201,7 @@ local function find_godot_executable(version)
     suffix = "-stable"
   end
 
-  local base_path = "~/.local/share/godot/app_userdata/Godots/versions/"
+  local base_path = config.base_path
   local folder_pattern = "Godot_v" .. version_key .. suffix .. "_mono*"
 
   -- find matching folders
@@ -201,7 +225,7 @@ local function find_godot_executable(version)
   return nil
 end
 local function find_all_godot_executables()
-  local base_path = vim.fn.expand("~/.local/share/godot/app_userdata/Godots/versions/")
+  local base_path = vim.fn.expand(config.base_path)
   if vim.fn.isdirectory(base_path) == 0 then
     return {}
   end
@@ -226,14 +250,16 @@ function SavePathForCurrentDirectory(callback)
   local current_dir = get_cwd()
 
   -- try auto detection
-  local version = get_godot_version_from_csproj()
-  local godot_exec
-  if version then
-    godot_exec = find_godot_executable(version)
-  end
-  if godot_exec then
-    save_or_create(godot_exec, current_dir)
-    return
+  if config.auto_detect then
+    local version = get_godot_version_from_csproj()
+    local godot_exec
+    if version then
+      godot_exec = find_godot_executable(version)
+    end
+    if godot_exec then
+      save_or_create(godot_exec, current_dir)
+      return
+    end
   end
   -- Show picker of available godot executables
   local godots = find_all_godot_executables()
@@ -316,13 +342,6 @@ function ListAllSavedPaths()
 
   vim.notify(table.concat(lines, ""), vim.log.levels.INFO)
 end
-
--- Create user commands
-vim.api.nvim_create_user_command("GodotSaveDirPath", function()
-  SavePathForCurrentDirectory()
-end, {})
-vim.api.nvim_create_user_command("GodotShowDirPath", DisplayPathForCurrentDirectory, {})
-vim.api.nvim_create_user_command("GodotListAllDirPaths", ListAllSavedPaths, {})
 
 -- Run last scene
 function M.GodotRunLast()

@@ -5,6 +5,7 @@
 -- This file is automatically loaded by lazyvim.config.init
 local lazygit = require("monouri.lazygit")
 local godot = require("monouri.godot")
+godot.setup()
 
 local map = vim.keymap.set
 
