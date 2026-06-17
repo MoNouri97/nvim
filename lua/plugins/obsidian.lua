@@ -25,7 +25,7 @@ return {
     workspaces = {
       {
         name = "work",
-        path = "~/Documents/obsidian-vault",
+        path = vim.fn.has("macunix") == 1 and "~/Documents/obsidian-vault" or "/mnt/D/Dev/obsidian",
       },
     },
 
