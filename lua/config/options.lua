@@ -16,5 +16,5 @@ vim.g.snacks_animate = false
 -- then you need to set the option below.
 vim.g.lazyvim_picker = "snacks"
 -- vim.g.lazyvim_picker = "telescope"
-vim.g.lazyvim_ts_lsp = "tsgo"
--- vim.g.lazyvim_ts_lsp = "vtsls"
+-- vim.g.lazyvim_ts_lsp = "tsgo"
+vim.g.lazyvim_ts_lsp = "vtsls"

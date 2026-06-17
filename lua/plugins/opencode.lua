@@ -82,7 +82,7 @@ return {
     {
       "<leader>oo",
       function()
-        require("opencode").toggle()
+        require("snacks.terminal").toggle(opencode_cmd, snacks_terminal_opts)
       end,
       mode = { "n" },
       desc = "Start opencode",
