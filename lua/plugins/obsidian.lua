@@ -20,6 +20,8 @@ return {
   keys = {
     { "<C-l>", "<cmd>ObsidianToggleCheckbox<cr>", desc = "Obsidian Toggle Checkbox" },
     { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian Quick Switch" },
+    { "<leader>od", "<cmd>ObsidianDailies<cr>", desc = "Obsidian Dailies" },
+    { "<leader>ox", "<cmd>ObsidianExtractNote<cr>", desc = "Obsidian Extract Note" },
   },
   opts = {
     workspaces = {
