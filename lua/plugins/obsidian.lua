@@ -18,10 +18,21 @@ return {
     -- see below for full list of optional dependencies 👇
   },
   keys = {
-    { "<C-l>", "<cmd>ObsidianToggleCheckbox<cr>", desc = "Obsidian Toggle Checkbox" },
+    { "<C-l>", "<cmd>ObsidianToggleCheckbox<cr>", desc = "Obsidian Toggle Checkbox", mode = { "n", "i" } },
     { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian Quick Switch" },
     { "<leader>od", "<cmd>ObsidianDailies<cr>", desc = "Obsidian Dailies" },
-    { "<leader>ox", "<cmd>ObsidianExtractNote<cr>", desc = "Obsidian Extract Note" },
+    {
+      "<leader>ox",
+      function()
+        vim.ui.input({ prompt = "Note title: " }, function(title)
+          if title then
+            vim.cmd("ObsidianExtractNote " .. title)
+          end
+        end)
+      end,
+      desc = "Obsidian Extract Note",
+      mode = "v",
+    },
   },
   opts = {
     workspaces = {
@@ -29,6 +40,12 @@ return {
         name = "work",
         path = vim.fn.has("macunix") == 1 and "~/Documents/obsidian-vault" or "/mnt/D/Dev/obsidian",
       },
+    },
+
+    notes_subdir = "MemoMeister/tasks",
+
+    daily_notes = {
+      folder = "MemoMeister/daily",
     },
 
     -- see below for full list of options 👇
