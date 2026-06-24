@@ -29,7 +29,34 @@ return {
       -- see below for full list of optional dependencies 👇
     },
     keys = {
-      { "<C-l>", "<cmd>ObsidianToggleCheckbox<cr>", desc = "Obsidian Toggle Checkbox", mode = { "n", "i" } },
+      {
+        "<C-l>",
+        function()
+          -- Custom toggle using checkbox.order instead of ui.checkboxes
+          local toggle = require("obsidian.util").toggle_checkbox
+          local states = { " ", "~", "!", ">", "x" }
+          toggle(states)
+        end,
+        desc = "Obsidian Toggle Checkbox",
+        mode = { "n", "i" },
+      },
+      {
+        "<C-l>",
+        function()
+          -- Custom toggle using checkbox.order instead of ui.checkboxes
+          local toggle = require("obsidian.util").toggle_checkbox
+          local states = { " ", "~", "!", ">", "x" }
+          local lines = require("obsidian.util").get_visual_selection()
+          if lines then
+            for l = lines.csrow, lines.cerow do
+              toggle(states, l)
+            end
+          end
+          vim.fn.feedkeys("gv", "n") -- reselect
+        end,
+        desc = "Obsidian Toggle Checkbox",
+        mode = { "v" },
+      },
       { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian Quick Switch" },
       { "<leader>od", "<cmd>ObsidianDailies<cr>", desc = "Obsidian Dailies" },
       {
@@ -52,7 +79,12 @@ return {
           path = vim.fn.has("macunix") == 1 and "~/Documents/obsidian-vault" or "/mnt/D/Dev/obsidian",
         },
       },
-
+      -- this fixes conflict with render-markdown
+      ui = {
+        checkboxes = {},
+        bullets = {},
+        external_link_icon = {},
+      },
       notes_subdir = "MemoMeister/tasks",
 
       daily_notes = {
