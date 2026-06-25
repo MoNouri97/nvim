@@ -66,7 +66,7 @@ return {
     {
       "<C-a>",
       function()
-        require("opencode").ask("@this: ", { submit = true })
+        require("opencode").ask("@this: ")
       end,
       mode = { "n", "x" },
       desc = "Ask opencode…",
@@ -86,6 +86,16 @@ return {
       end,
       mode = { "n" },
       desc = "Start opencode",
+    },
+    {
+      "<leader>ow",
+      function()
+        require("opencode").ask(
+          "Summarize my last week of work from MemoMeister/daily/ — list each day with key tasks, flag unfinished items, and identify recurring themes (e.g., animations, Sentry, build CI). Keep it brief, 5–10 lines max."
+        )
+      end,
+      mode = { "n" },
+      desc = "Weekly Summary",
     },
     {
       "<A-;>",
