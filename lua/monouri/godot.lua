@@ -6,7 +6,8 @@ local M = {}
 
 local config = {
   base_path = "~/.local/share/godot/app_userdata/Godots/versions/",
-  cache_file = vim.fn.stdpath("cache") .. "/saved_paths.json",
+  cache_file = vim.fn.stdpath("cache") .. "/godot_saved_paths.json",
+  scene_counts_file = vim.fn.stdpath("cache") .. "/godot_scene_counts.json",
   auto_detect = true,
 }
 
@@ -20,6 +21,9 @@ function M.setup(opts)
   end
   if opts.auto_detect ~= nil then
     config.auto_detect = opts.auto_detect
+  end
+  if opts.scene_counts_file then
+    config.scene_counts_file = opts.scene_counts_file
   end
   -- Create user commands
   vim.api.nvim_create_user_command("GodotSaveDirPath", function()
@@ -82,6 +86,44 @@ local function save_paths(paths)
   file:write(json)
   file:close()
   return true
+end
+
+local function load_scene_counts()
+  if vim.fn.filereadable(config.scene_counts_file) == 0 then
+    return {}
+  end
+  local file = io.open(config.scene_counts_file, "r")
+  if not file then
+    return {}
+  end
+  local content = file:read("*all")
+  file:close()
+  if content == "" then
+    return {}
+  end
+  local ok, counts = pcall(vim.json.decode, content)
+  if not ok then
+    return {}
+  end
+  return counts
+end
+
+local function save_scene_counts(counts)
+  local file = io.open(config.scene_counts_file, "w")
+  if not file then
+    return
+  end
+  local ok, json = pcall(vim.json.encode, counts)
+  if ok then
+    file:write(json)
+  end
+  file:close()
+end
+
+local function increment_scene_count(scene_path)
+  local counts = load_scene_counts()
+  counts[scene_path] = (counts[scene_path] or 0) + 1
+  save_scene_counts(counts)
 end
 
 -- save path or create and then save
@@ -383,6 +425,16 @@ function M.Choose()
     return
   end
 
+  local counts = load_scene_counts()
+  table.sort(files, function(a, b)
+    local ca = counts[a] or 0
+    local cb = counts[b] or 0
+    if ca ~= cb then
+      return ca > cb
+    end
+    return a < b
+  end)
+
   vim.ui.select(files, {
     prompt = "Scene Files",
   }, function(selection)
@@ -402,6 +454,7 @@ function M.GodotRunScene(scene_name)
     end)
     return
   end
+  increment_scene_count(scene_name)
   local godot_command = vim.fn.shellescape(godot) .. " --nvim " .. vim.fn.shellescape(scene_name)
   local build_command = "dotnet build"
   local cmd = build_command .. " && " .. godot_command .. " && $SHELL"

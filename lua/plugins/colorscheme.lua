@@ -252,6 +252,7 @@ return {
   },
   -- {
   --   "oxfist/night-owl.nvim",
+  --   name = "night-owl",
   --   enabled = true,
   --   priority = 1000,
   --   lazy = false,
@@ -261,16 +262,17 @@ return {
   --     italics = true,
   --     underline = true,
   --     undercurl = true,
+  --     transparent_background = false,
   --   },
   -- },
-  -- {
-  --   "craftzdog/solarized-osaka.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = function()
-  --     return {
-  --       transparent = false,
-  --     }
-  --   end,
-  -- },
+  {
+    "craftzdog/solarized-osaka.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = function()
+      return {
+        transparent = false,
+      }
+    end,
+  },
 }
