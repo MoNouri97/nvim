@@ -59,6 +59,7 @@ return {
       },
       { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian Quick Switch" },
       { "<leader>od", "<cmd>ObsidianDailies<cr>", desc = "Obsidian Dailies" },
+      { "<leader>ot", "<cmd>ObsidianTemplate todo<cr>", desc = "Obsidian Todo Template" },
       {
         "<leader>ox",
         function()
@@ -89,6 +90,13 @@ return {
 
       daily_notes = {
         folder = "MemoMeister/daily",
+        template = "todo.md",
+      },
+
+      templates = {
+        subdir = "MemoMeister/templates",
+        date_format = "%Y-%m-%d",
+        time_format = "%H:%M",
       },
 
       -- see below for full list of options 👇
