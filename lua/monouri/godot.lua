@@ -460,7 +460,25 @@ function M.GodotRunScene(scene_name)
   local cmd = build_command .. " && " .. godot_command .. " && $SHELL"
   s_last_scene_run = scene_name
 
-  Snacks.terminal({ "bash", "-c", cmd }, { cwd = Util.root(), auto_close = true })
+  Snacks.terminal({ "bash", "-c", cmd }, {
+    cwd = Util.root(),
+    auto_close = false,
+    win = {
+      position = "bottom",
+      height = 0.3,
+    },
+    on_open = function(term)
+      local buf = term.buf
+      local function map(key, rhs)
+        vim.keymap.set("t", key, rhs, { buffer = buf, noremap = true, silent = true })
+      end
+      map("<C-z>", "<C-\\><C-n>pi<C-z>")
+      map("<C-s>", "<C-\\><C-n>i<C-s>")
+      map("<C-c>", "<C-\\><C-n>i<C-c>")
+      map("<C-x>", "<C-\\><C-n>i<C-x>")
+      map("<C-o>", "<C-\\><C-n>i<C-o>")
+    end,
+  })
 end
 
 return M

@@ -13,6 +13,7 @@ return {
         },
       }
     end
+
     for _, lang in ipairs({ "cs", "fsharp", "vb" }) do
       if not dap.configurations[lang] then
         dap.configurations[lang] = {
@@ -30,5 +31,13 @@ return {
         }
       end
     end
+    dap.configurations.cs = {
+      {
+        name = "Attach",
+        type = "coreclr",
+        request = "attach",
+        processId = require("dap.utils").pick_process,
+      },
+    }
   end,
 }

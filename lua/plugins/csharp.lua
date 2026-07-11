@@ -63,8 +63,8 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.lsp.enable("roslyn_ls")
     vim.lsp.config("roslyn_ls", {
       ["csharp|background_analysis"] = {
-        dotnet_analyzer_diagnostics_scope = "openFiles",
-        dotnet_compiler_diagnostics_scope = "openFiles",
+        dotnet_analyzer_diagnostics_scope = "fullSolution",
+        dotnet_compiler_diagnostics_scope = "fullSolution",
       },
       enable_roslyn_analyzers = true,
       organize_imports_on_format = true,
