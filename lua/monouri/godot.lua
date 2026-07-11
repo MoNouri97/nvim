@@ -343,7 +343,7 @@ function SavePathForCurrentDirectory(callback)
   end
 end
 
-function GetCurrentSavedPath()
+function M.GetCurrentSavedPath()
   local current_dir = get_cwd()
   local paths = load_saved_paths()
   if paths[current_dir] and paths[current_dir].path then
@@ -447,7 +447,7 @@ end
 -- Run arbitrary scene
 ---@type fun(scene_name:string)
 function M.GodotRunScene(scene_name)
-  godot = GetCurrentSavedPath()
+  godot = M.GetCurrentSavedPath()
   if godot == nil then
     SavePathForCurrentDirectory(function()
       M.GodotRunScene(scene_name)
