@@ -34,7 +34,7 @@ return {
         function()
           -- Custom toggle using checkbox.order instead of ui.checkboxes
           local toggle = require("obsidian.util").toggle_checkbox
-          local states = { " ", "~", "!", ">", "x" }
+          local states = { " ", "~", "x" }
           toggle(states)
         end,
         desc = "Obsidian Toggle Checkbox",
@@ -45,7 +45,7 @@ return {
         function()
           -- Custom toggle using checkbox.order instead of ui.checkboxes
           local toggle = require("obsidian.util").toggle_checkbox
-          local states = { " ", "~", "!", ">", "x" }
+          local states = { " ", "~", "x" }
           local lines = require("obsidian.util").get_visual_selection()
           if lines then
             for l = lines.csrow, lines.cerow do
