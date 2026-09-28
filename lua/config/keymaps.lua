@@ -68,6 +68,14 @@ map("n", "<leader>E", function()
   Snacks.picker("explorer")
 end, { desc = "File Picker/Tree" })
 
+-- finder
+map("n", "<leader>fo", function()
+  local name = vim.api.nvim_buf_get_name(0)
+  -- oil buffers are already a directory, just strip the scheme
+  local dir = name:match("^oil://(.*)") or (name ~= "" and vim.fn.fnamemodify(name, ":p:h")) or vim.fn.getcwd()
+  vim.ui.open(dir)
+end, { desc = "[F]older in Finder [O]pen" })
+
 -- godot start server listen
 local function file_exists(path)
   local stat = vim.loop.fs_stat(path)

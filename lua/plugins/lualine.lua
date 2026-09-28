@@ -90,6 +90,10 @@ return {
     opts.sections.lualine_z = {
       -- { "encoding", separator = { left = "", right = "█" }, padding = { left = 1 } },
       { "encoding", separator = { left = "", right = "" }, padding = { left = 1 } },
+      {
+        -- Show the currently connected server and its status
+        require("opencode").statusline,
+      },
     }
   end,
 }
