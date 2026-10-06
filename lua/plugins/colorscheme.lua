@@ -38,7 +38,7 @@ return {
         light = "latte",
         dark = "mocha",
       },
-      transparent_background = true, -- disables setting the background color.
+      transparent_background = false, -- disables setting the background color.
       show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
       term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
       dim_inactive = {
@@ -273,6 +273,23 @@ return {
       return {
         transparent = false,
       }
+    end,
+  },
+  {
+    "harshrajsachan/omni.nvim",
+    lazy = false, -- load during startup if OmniTheme is your main colorscheme
+    priority = 1000, -- load before other start plugins
+
+    config = function()
+      -- Optional: access OmniTheme's Lua API
+      -- local omnitheme = require("omnitheme")
+
+      -- Optional: enable a transparent background.
+      -- Must be set before loading the colorscheme.
+      -- vim.g.omnitheme_transparent = true
+
+      -- Choose your flavour.
+      -- vim.cmd("colorscheme blackout")
     end,
   },
 }
