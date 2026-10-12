@@ -97,6 +97,11 @@ return {
         subdir = "MemoMeister/templates",
         date_format = "%Y-%m-%d",
         time_format = "%H:%M",
+        substitutions = {
+          weekday = function()
+            return tostring(os.date("%A"))
+          end,
+        },
       },
 
       -- see below for full list of options 👇

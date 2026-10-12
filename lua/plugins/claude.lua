@@ -45,6 +45,6 @@ return {
     },
     -- Diff management
     { "<leader>oa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-    { "<leader>od", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+    { "<leader>on", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
   },
 }
