@@ -31,6 +31,8 @@ function M.setup(opts)
   end, {})
   vim.api.nvim_create_user_command("GodotShowDirPath", DisplayPathForCurrentDirectory, {})
   vim.api.nvim_create_user_command("GodotListAllDirPaths", ListAllSavedPaths, {})
+  vim.api.nvim_create_user_command("GodotOpenEditor", M.GodotOpenEditor, {})
+  vim.api.nvim_create_user_command("GodotResetDirPath", GodotResetDirPath, {})
 end
 local s_last_scene_run = ""
 local godot = nil
@@ -239,7 +241,11 @@ local function find_godot_executable(version)
       print("Invalid version string: " .. version)
       return nil
     end
-    version_key = major .. "[-_.]" .. minor
+    if tonumber(patch) > 0 then
+      version_key = major .. "_" .. minor .. "_" .. patch
+    else
+      version_key = major .. "[-_.]" .. minor
+    end
     suffix = "-stable"
   end
 
@@ -457,12 +463,12 @@ function M.GodotRunScene(scene_name)
   increment_scene_count(scene_name)
   local godot_command = vim.fn.shellescape(godot) .. " --nvim " .. vim.fn.shellescape(scene_name)
   local build_command = "dotnet build"
-  local cmd = build_command .. " && " .. godot_command .. " && $SHELL"
+  local cmd = build_command .. " && " .. godot_command .. "; read -p 'Press Enter to close...'"
   s_last_scene_run = scene_name
 
   Snacks.terminal({ "bash", "-c", cmd }, {
     cwd = Util.root(),
-    auto_close = false,
+    auto_close = true,
     win = {
       position = "bottom",
       height = 0.3,
@@ -479,6 +485,24 @@ function M.GodotRunScene(scene_name)
       map("<C-o>", "<C-\\><C-n>i<C-o>")
     end,
   })
+end
+
+function M.GodotOpenEditor()
+  godot = M.GetCurrentSavedPath()
+  if godot == nil then
+    SavePathForCurrentDirectory(function()
+      M.GodotOpenEditor()
+    end)
+    return
+  end
+  vim.fn.jobstart({ godot, "--editor" }, { detach = true })
+end
+
+function GodotResetDirPath()
+  local paths = load_saved_paths()
+  paths[get_cwd()] = nil
+  save_paths(paths)
+  SavePathForCurrentDirectory()
 end
 
 return M

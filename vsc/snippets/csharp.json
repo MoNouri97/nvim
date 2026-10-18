@@ -88,12 +88,22 @@
       "}"
     ]
   },
-  "WireOnReady": {
-    "prefix": "wire",
+  "oldWireOnReady": {
+    "prefix": "oldwire",
     "body": [
       "public override void _Notification(int what) {",
       "\tif (what == NotificationEnterTree) {",
       "\t\tthis.WireOnReady();",
+      "\t}",
+      "}"
+    ]
+  },
+  "WireNodes": {
+    "prefix": "wire",
+    "body": [
+      "public override void _Notification(int what) {",
+      "\tif (what == NotificationEnterTree) {",
+      "\t\tWireNodes()",
       "\t}",
       "}"
     ]
