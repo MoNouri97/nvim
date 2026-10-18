@@ -34,7 +34,7 @@ return {
         function()
           -- Custom toggle using checkbox.order instead of ui.checkboxes
           local toggle = require("obsidian.util").toggle_checkbox
-          local states = { " ", "~", "!", ">", "x" }
+          local states = { " ", "~", "x" }
           toggle(states)
         end,
         desc = "Obsidian Toggle Checkbox",
@@ -45,7 +45,7 @@ return {
         function()
           -- Custom toggle using checkbox.order instead of ui.checkboxes
           local toggle = require("obsidian.util").toggle_checkbox
-          local states = { " ", "~", "!", ">", "x" }
+          local states = { " ", "~", "x" }
           local lines = require("obsidian.util").get_visual_selection()
           if lines then
             for l = lines.csrow, lines.cerow do
@@ -97,6 +97,11 @@ return {
         subdir = "MemoMeister/templates",
         date_format = "%Y-%m-%d",
         time_format = "%H:%M",
+        substitutions = {
+          weekday = function()
+            return tostring(os.date("%A"))
+          end,
+        },
       },
 
       -- see below for full list of options 👇
