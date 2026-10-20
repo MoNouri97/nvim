@@ -1,3 +1,5 @@
+--  NOT USED ANYMORE - testing alternative
+
 local Util = require("lazyvim.util")
 
 local M = {}
