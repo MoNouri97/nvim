@@ -1,3 +1,58 @@
+---Ask OpenCode in a brand-new session for Neovim's cwd.
+---
+---`require("opencode").ask()` targets the most recently *updated* session for the
+---directory. A session the TUI has opened but not yet sent a message in has no
+---`location` bound, so that lookup can't see it — asking lands in the previous
+---session instead. Creating the session here with an explicit `location` makes it
+---visible immediately, and makes it the newest, so plain `ask()`/`prompt()`/operator
+---calls afterwards continue in it.
+---
+---Drop this once https://github.com/nickjvandyke/opencode.nvim/issues/335 ships.
+---@param default? string Text to pre-fill the input with.
+local function ask_in_new_session(default)
+  local Promise = require("opencode.promise")
+
+  require("opencode.server.discovery")
+    .get()
+    :next(function(server)
+      local context = require("opencode.context").new(server)
+
+      return require("opencode.ui.ask").ask(default, context):next(function(input)
+        local text = context:render(input).output:plaintext()
+
+        return server
+          :get_sessions()
+          :next(function(sessions)
+            -- Inherit model and agent from the newest session: a session created
+            -- without them falls back to OpenCode's own default provider, which
+            -- isn't necessarily one you're connected to. With no prior session for
+            -- this directory there's nothing to inherit, and that fallback applies.
+            local previous = sessions[1] or {}
+            return server:request("/api/session", "POST", {
+              location = { directory = vim.fn.getcwd() },
+              model = previous.model,
+              agent = previous.agent,
+            })
+          end)
+          :next(function(response)
+            return server:prompt(response.data.id, text)
+          end)
+          :next(function()
+            context:clear()
+          end)
+          :catch(function(err)
+            context:resume()
+            return Promise.reject(err)
+          end)
+      end)
+    end)
+    :catch(function(err)
+      if err then
+        vim.notify(err, vim.log.levels.ERROR, { title = "opencode" })
+      end
+    end)
+end
+
 if true then
   return {
     "nickjvandyke/opencode.nvim",
@@ -59,10 +114,26 @@ if true then
       {
         "<C-a>",
         function()
-          require("opencode").ask("@this: ", { session = "new" })
+          require("opencode").ask("@this: ")
         end,
         mode = { "n", "x" },
-        desc = "Ask opencode…",
+        desc = "Ask opencode (continue session)…",
+      },
+      {
+        "<S-C-a>",
+        function()
+          ask_in_new_session("@this: ")
+        end,
+        mode = { "n", "x" },
+        desc = "Ask opencode (new session)…",
+      },
+      {
+        "<leader>oa",
+        function()
+          require("opencode").ask("@this: ")
+        end,
+        mode = { "n", "x" },
+        desc = "Ask opencode (continue session)…",
       },
       {
         "<C-x>",
