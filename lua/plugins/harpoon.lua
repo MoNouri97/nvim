@@ -10,7 +10,6 @@ return {
   },
   keys = function()
     local harpoon = require("harpoon")
-    local conf = require("telescope.config").values
 
     local toggle_opts = {
       border = "rounded",
@@ -18,22 +17,20 @@ return {
       ui_width_ratio = 0.40,
     }
 
-    local function toggle_telescope(harpoon_files)
-      local file_paths = {}
+    local function toggle_picker(harpoon_files)
+      local items = {}
       for _, item in ipairs(harpoon_files.items) do
-        table.insert(file_paths, item.value)
+        table.insert(items, {
+          text = vim.fn.fnamemodify(item.value, ":~"),
+          file = item.value,
+        })
       end
 
-      require("telescope.pickers")
-        .new({}, {
-          prompt_title = "Harpoon",
-          finder = require("telescope.finders").new_table({
-            results = file_paths,
-          }),
-          previewer = conf.file_previewer({}),
-          sorter = conf.generic_sorter({}),
-        })
-        :find()
+      Snacks.picker.pick({
+        title = "Harpoon",
+        items = items,
+        format = "file",
+      })
     end
 
     return {
@@ -65,9 +62,9 @@ return {
         mode = "n",
         "<leader>(",
         function()
-          toggle_telescope(harpoon:list())
+          toggle_picker(harpoon:list())
         end,
-        desc = "Harpoon telescope menu",
+        desc = "Harpoon picker menu",
       },
       {
         mode = "n",

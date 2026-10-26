@@ -20,25 +20,52 @@ return {
   },
   {
     "ThePrimeagen/git-worktree.nvim",
-    config = function()
-      require("telescope").load_extension("git_worktree")
-    end,
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      {
+        "<leader>gw",
+        function()
+          local items = {}
+          local entry = {}
+          local function flush()
+            if entry.worktree then
+              local branch = entry.branch and entry.branch:gsub("^refs/heads/", "") or "detached"
+              items[#items + 1] = {
+                text = ("%s  %s"):format(vim.fn.fnamemodify(entry.worktree, ":~"), branch),
+                file = entry.worktree,
+              }
+            end
+            entry = {}
+          end
+          for _, line in ipairs(vim.fn.systemlist({ "git", "worktree", "list", "--porcelain" })) do
+            if line == "" then
+              flush()
+            else
+              local key, value = line:match("^(%S+)%s*(.*)$")
+              if key then
+                entry[key] = value
+              end
+            end
+          end
+          flush()
+
+          Snacks.picker.pick({
+            title = "Git Worktrees",
+            items = items,
+            format = "text",
+            layout = { preset = "select" },
+            confirm = function(picker, item)
+              picker:close()
+              if item then
+                require("git-worktree").switch_worktree(item.file)
+              end
+            end,
+          })
+        end,
+        mode = "n",
+        desc = "Git Worktrees",
+      },
     },
-    keys = function()
-      return {
-        {
-          "<leader>gw",
-          "<cmd>Telescope git_worktree theme=dropdown<cr>",
-          -- function()
-          --   require("telescope").extensions.git_worktree.git_worktrees()
-          -- end,
-          mode = "n",
-          desc = "Git Worktrees",
-        },
-      }
-    end,
   },
   {
     "sindrets/diffview.nvim",
