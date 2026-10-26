@@ -63,7 +63,7 @@ return {
     opts.sections.lualine_a = { { "mode", separator = { left = "", right = "" } } }
     opts.sections.lualine_c = { harpoon_component, Util.pretty_path() }
     opts.sections.lualine_y = {
-      { "filetype" },
+      { "filetype", colored = true },
       {
         "diagnostics",
         sources = { "nvim_diagnostic" }, -- uses vim.diagnostic

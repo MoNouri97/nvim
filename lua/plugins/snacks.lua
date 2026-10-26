@@ -21,13 +21,13 @@ return {
         LazyVim.pick("grep_word", { hidden = true }),
         desc = "[F]ind [W]ord",
       },
-      {
-        "<leader>fp",
-        function()
-          Snacks.picker.files({ cwd = require("lazy.core.config").options.root })
-        end,
-        desc = "Find Plugin File",
-      },
+      -- {
+      --   "<leader>fp",
+      --   function()
+      --     Snacks.picker.files({ cwd = require("lazy.core.config").options.root })
+      --   end,
+      --   desc = "Find Plugin File",
+      -- },
     },
   },
 }
