@@ -25,11 +25,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bufnr = args.buf
     local map = vim.keymap.set
-    map("n", "gd", require("telescope.builtin").lsp_definitions, {
+    map("n", "gd", function()
+      Snacks.picker.lsp_definitions()
+    end, {
       desc = "Goto Definition",
       buffer = bufnr,
     })
-    map("n", "gr", require("telescope.builtin").lsp_references, {
+    map("n", "gr", function()
+      Snacks.picker.lsp_references()
+    end, {
       desc = "Goto References",
       buffer = bufnr,
     })
