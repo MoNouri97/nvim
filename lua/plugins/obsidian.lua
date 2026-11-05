@@ -10,7 +10,7 @@ return {
   },
 
   {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
     ft = "markdown",
@@ -22,50 +22,27 @@ return {
     --   "BufReadPre path/to/my-vault/*.md",
     --   "BufNewFile path/to/my-vault/*.md",
     -- },
-    dependencies = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-
-      -- see below for full list of optional dependencies 👇
-    },
     keys = {
+      -- cycles through checkbox.order
+      { "<C-l>", "<cmd>Obsidian toggle_checkbox<cr>", desc = "Obsidian Toggle Checkbox", mode = { "n", "i" } },
       {
         "<C-l>",
         function()
-          -- Custom toggle using checkbox.order instead of ui.checkboxes
-          local toggle = require("obsidian.util").toggle_checkbox
-          local states = { " ", "~", "x" }
-          toggle(states)
-        end,
-        desc = "Obsidian Toggle Checkbox",
-        mode = { "n", "i" },
-      },
-      {
-        "<C-l>",
-        function()
-          -- Custom toggle using checkbox.order instead of ui.checkboxes
-          local toggle = require("obsidian.util").toggle_checkbox
-          local states = { " ", "~", "x" }
-          local lines = require("obsidian.util").get_visual_selection()
-          if lines then
-            for l = lines.csrow, lines.cerow do
-              toggle(states, l)
-            end
-          end
+          vim.cmd("Obsidian toggle_checkbox")
           vim.fn.feedkeys("gv", "n") -- reselect
         end,
         desc = "Obsidian Toggle Checkbox",
         mode = { "v" },
       },
-      { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian Quick Switch" },
-      { "<leader>od", "<cmd>ObsidianDailies<cr>", desc = "Obsidian Dailies" },
-      { "<leader>ot", "<cmd>ObsidianTemplate todo<cr>", desc = "Obsidian Todo Template" },
+      { "<leader>oq", "<cmd>Obsidian quick_switch<cr>", desc = "Obsidian Quick Switch" },
+      { "<leader>od", "<cmd>Obsidian dailies<cr>", desc = "Obsidian Dailies" },
+      { "<leader>ot", "<cmd>Obsidian template todo<cr>", desc = "Obsidian Todo Template" },
       {
         "<leader>ox",
         function()
           vim.ui.input({ prompt = "Note title: " }, function(title)
             if title then
-              vim.cmd("ObsidianExtractNote " .. title)
+              vim.cmd("Obsidian extract_note " .. title)
             end
           end)
         end,
@@ -74,18 +51,22 @@ return {
       },
     },
     opts = {
+      legacy_commands = false,
       workspaces = {
         {
           name = "work",
           path = vim.fn.has("macunix") == 1 and "~/Documents/obsidian-vault" or "/mnt/D/Dev/obsidian",
         },
       },
-      -- this fixes conflict with render-markdown
-      ui = {
-        checkboxes = {},
-        bullets = {},
-        external_link_icon = {},
+      -- render-markdown handles rendering
+      ui = { enable = false },
+      picker = {
+        name = "snacks.picker",
       },
+      checkbox = {
+        order = { " ", "~", "x" },
+      },
+
       notes_subdir = "MemoMeister/tasks",
 
       daily_notes = {
@@ -94,7 +75,7 @@ return {
       },
 
       templates = {
-        subdir = "MemoMeister/templates",
+        folder = "MemoMeister/templates",
         date_format = "%Y-%m-%d",
         time_format = "%H:%M",
         substitutions = {
