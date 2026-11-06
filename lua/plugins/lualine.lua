@@ -83,7 +83,7 @@ return {
         colored = true,
         update_in_insert = false,
         -- always_visible = false,
-        separator = { left = "", right = "" },
+        separator = { left = "" },
         padding = { left = 1 },
       },
     }
